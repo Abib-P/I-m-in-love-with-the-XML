@@ -1,21 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 #include "../h_files/file_information.h" //TODO update the #include section
+#include "../h_files/read_xml.h"
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
 int main() {
     char * fileName = "test.xml";
-    File_information* fileInfo = initialiseFileInformation(fileName);
+    File_information* xmlFileInfo = initialiseFileInformation(fileName);
+    XML_basic* xmlFile;
 
-    if(fileInfo != NULL) //no error during opening file
+    if(xmlFileInfo != NULL) //no error during opening file
     {
-        char actualCharacter = (char)fgetc(fileInfo->fp);
-        while(actualCharacter != EOF)
+        xmlFile = readXml(xmlFileInfo);
+        if(xmlFileInfo->error != NULL)
         {
-            printf("%c",actualCharacter);
-            actualCharacter = (char)fgetc(fileInfo->fp);
+            showError(xmlFileInfo->error);
         }
     } else{
         return EXIT_FAILURE;

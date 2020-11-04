@@ -10,8 +10,8 @@ typedef struct ERROR{
     char* error_value ;
 } ERROR;
 
-void showError(ERROR*);
+void showError(ERROR* error);
 
-ERROR* createError(char* );
+ERROR* createError(char* where, char* error_value);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_ERROR_GESTION_H

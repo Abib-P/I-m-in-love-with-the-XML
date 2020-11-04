@@ -4,7 +4,18 @@
 
 #include "../h_files/error_gestion.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void showError(ERROR* err) {
-    printf("%s: %s", err->where, err->error_value);
+    printf("Error in %s : %s", err->where, err->error_value);
+}
+
+ERROR *createError(char* where,char* error_value) {
+    ERROR* result = malloc(sizeof(ERROR));
+    result->where = malloc(strlen(where));
+    strcpy(result->where,where);
+    result->error_value = malloc(strlen(error_value));
+    strcpy(result->error_value,error_value);
+    return result;
 }
