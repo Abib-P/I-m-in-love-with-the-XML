@@ -4,11 +4,13 @@
 
 
 int main() {
+
     displayFile();
 
+    char* test = "\nc'est un test";
+
     char** myStr_Array = arrayElements();
-    char* test = "c'est un test";
-    printf("%s", test);
+    getInfo(myStr_Array[0]);
 
     return EXIT_SUCCESS;
 }

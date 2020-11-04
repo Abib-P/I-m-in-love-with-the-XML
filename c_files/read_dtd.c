@@ -15,7 +15,7 @@ FILE* initFile() {
 void displayFile() {
     FILE* f = initFile();
     char c = fgetc(f);
-    printf("\n");
+    printf("\ndisplayFile: \n");
     while (c != EOF)
     {
         printf("%c", c);
@@ -27,10 +27,14 @@ void displayFile() {
 // retrieve content of <tag = element>
 char** arrayElements() {
     int size_res = 0;
-    char** res = malloc(sizeof(char) * size_res);
+    int capacity = 10;
+    char** res = malloc(sizeof(char) * capacity);
+
+    printf("\narrayElements:");
 
     FILE* f = initFile();
     char c = fgetc(f);
+    // read file
     while (c != EOF)
     {
         // '[' <our_elements> ']'
@@ -53,7 +57,7 @@ char** arrayElements() {
                     str[i] = '\0';
                     size_res += 1;
                     strcpy(res[size_res-1], str);
-//                    printf("\n%s", res[size_res-1]);
+                    printf("\n%s", res[size_res-1]);
                 }
 
                 c = fgetc(f);
@@ -67,6 +71,21 @@ char** arrayElements() {
 }
 
 // TODO
+//void cut (char* str) {
+//    for (int i = 0; str[i] != '\0'; ++i) {
+//        // type
+//        if (str[i] == '!') {
+//            printf("\ntype : ");
+//            while (str[i] != ' ') {
+//                printf("%s", str[i]);
+//            }
+//        }
+//    }
+//}
+
+
+// TODO
 void getInfo(char* str) {
+    printf("\ngetInfo:\n");
     printf("%s", str);
 }
