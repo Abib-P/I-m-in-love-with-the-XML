@@ -3,4 +3,4 @@ project(ESGI C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(ESGI I-m-in-love-with-the-XML/c_files/main.c I-m-in-love-with-the-XML/c_files/read_dtd.c)
+add_executable(I-m-in-love-with-the-XML dtd_folder/c_files/main.c dtd_folder/c_files/read_dtd.c)
