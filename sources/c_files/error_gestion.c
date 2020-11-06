@@ -13,9 +13,9 @@ void showError(ERROR* err) {
 
 ERROR *createError(char* where,char* error_value) {
     ERROR* result = malloc(sizeof(ERROR));
-    result->where = malloc(strlen(where));
+    result->where = malloc(strlen(where)*sizeof(char));
     strcpy(result->where,where);
-    result->error_value = malloc(strlen(error_value));
+    result->error_value = malloc(strlen(error_value)*sizeof(char));
     strcpy(result->error_value,error_value);
     return result;
 }

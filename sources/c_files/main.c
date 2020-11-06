@@ -3,11 +3,11 @@
 #include "../h_files/file_information.h" //TODO update the #include section
 #include "../h_files/read_xml.h"
 
-#define EXIT_SUCCESS 0
-#define EXIT_FAILURE 1
+#define EXIT_SUCCESS 0 //todo valgrind
+#define EXIT_FAILURE 1 //todo install WSL for linux
 
 int main() {
-    char * fileName = "test.xml";
+    char * fileName = "../resources/test.xml";
     File_information* xmlFileInfo = initialiseFileInformation(fileName);
     XML_basic* xmlFile;
 

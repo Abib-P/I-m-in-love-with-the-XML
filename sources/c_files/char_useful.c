@@ -41,5 +41,6 @@ char *getElementName(File_information *fileInfo) {
     char* result = malloc(sizeof(char)*bufferSize);
     strcpy(result,buffer);
     fseek(fileInfo->fp, -1 , SEEK_CUR);
+    fileInfo->actualColumn--;
     return result;
 }
