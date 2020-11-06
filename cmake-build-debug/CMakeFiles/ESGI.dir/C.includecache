@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+H:/Projects/ESGI/I-m-in-love-with-the-XML/c_files/read_dtd.c
+../h_files/read_dtd.h
+H:/Projects/ESGI/I-m-in-love-with-the-XML/h_files/read_dtd.h
+
+H:/Projects/ESGI/I-m-in-love-with-the-XML/h_files/read_dtd.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
