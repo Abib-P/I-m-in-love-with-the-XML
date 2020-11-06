@@ -1,0 +1,5 @@
+<!DOCTYPE classroms[
+    <!ELEMENT classroms (classrom+, _classrom)>
+    <!ELEMENT classrom (#PCDATA)>
+    <!ELEMENT _classrom (#PCDATA)>
+]>
