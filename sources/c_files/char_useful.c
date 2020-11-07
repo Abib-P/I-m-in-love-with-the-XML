@@ -9,7 +9,7 @@ char *getElementName(File_information *fileInfo) {
     char buffer[1000]; //TODO taille arbitraire
     char actualCharRead = (char)fgetc(fileInfo->fp);
     fileInfo->actualColumn++;
-    if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n')
+    if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n' || actualCharRead == EOF)
     {
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
@@ -22,7 +22,7 @@ char *getElementName(File_information *fileInfo) {
     bufferSize++;
     actualCharRead = (char)fgetc(fileInfo->fp);
     fileInfo->actualColumn++;
-    while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n')
+    while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF )
     {
         buffer[bufferSize] = actualCharRead;
         bufferSize++;
@@ -30,7 +30,7 @@ char *getElementName(File_information *fileInfo) {
         fileInfo->actualColumn++;
     }
     buffer[bufferSize] = 0;
-    if(actualCharRead == '<'){
+    if(actualCharRead == '<' || actualCharRead == EOF){
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -43,4 +43,34 @@ char *getElementName(File_information *fileInfo) {
     fseek(fileInfo->fp, -1 , SEEK_CUR);
     fileInfo->actualColumn--;
     return result;
+}
+
+void addCharacterToStringValue(XML_basic* actualXmlMarkup, char characterToPut) {
+
+    if(actualXmlMarkup->value == NULL)
+    {
+        actualXmlMarkup->valueCapacity = 20;
+        actualXmlMarkup->value = malloc(sizeof(char)*actualXmlMarkup->valueCapacity);
+        actualXmlMarkup->valueSize = 0;
+        actualXmlMarkup->value[0] = 0;
+    }
+
+    if( (actualXmlMarkup->valueSize+1) == actualXmlMarkup->valueCapacity)
+    {
+        actualXmlMarkup->valueCapacity *= 2;
+        char* newValue = malloc(sizeof(char)*actualXmlMarkup->valueCapacity);
+        int index = 0;
+        while(actualXmlMarkup->value[index]){
+            newValue[index] = actualXmlMarkup->value[index];
+            index++;
+        }
+        newValue[index] = 0;
+        free(actualXmlMarkup->value);
+        actualXmlMarkup->value = newValue;
+    }
+
+    actualXmlMarkup->value[actualXmlMarkup->valueSize] = characterToPut;
+    actualXmlMarkup->valueSize++;
+    actualXmlMarkup->value[actualXmlMarkup->valueSize] = 0;
+
 }
