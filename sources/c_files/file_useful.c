@@ -4,7 +4,8 @@
 
 #include "../h_files/file_useful.h"
 
-char firstCharacterAfterSpace(File_information *fileInformation) {
+char getFirstCharacterAfterSpace(File_information *fileInformation) {
+
     char actualCharRead = (char)fgetc(fileInformation->fp);
     while(actualCharRead == ' ' || actualCharRead == '\n')
     {
@@ -17,5 +18,18 @@ char firstCharacterAfterSpace(File_information *fileInformation) {
 
         actualCharRead =  (char)fgetc(fileInformation->fp);
     }
+    return actualCharRead;
+}
+
+char getNextCharacterInFile(File_information *fileInformation) {
+
+    char actualCharRead = (char)fgetc(fileInformation->fp);
+    if(actualCharRead == '\n') {
+        fileInformation->actualColumn = 0;
+        fileInformation->actualLine++;
+    } else{
+        fileInformation->actualColumn++;
+    }
+
     return actualCharRead;
 }
