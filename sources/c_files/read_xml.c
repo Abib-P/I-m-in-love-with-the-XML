@@ -24,9 +24,7 @@ XML_basic* readXml(File_information* fileInfo) {
     XML_basic* xmlRootElement = createRootXmlBasic(fileInfo);
     if(fileInfo->error != NULL)
     {
-        if(xmlRootElement != NULL)
-            free(xmlRootElement);
-        return NULL;
+        return xmlRootElement;
     }
     readInsideXml(fileInfo, xmlRootElement);
 
@@ -37,16 +35,6 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
     char actualCharRead = getFirstCharacterAfterSpace(fileInfo);
     while(1) {
         while (actualCharRead != '<' && actualCharRead != '>' && actualCharRead != EOF) {
-            if(strcmp(xmlParent->elementName,"classrooms") == 0)
-            {
-                if(actualCharRead == 'c'){
-                    for(int i = 0 ; i < 30 ; i++)
-                    {
-                        printf("%c",actualCharRead);
-                        actualCharRead=fgetc(fileInfo->fp);
-                    }
-                }
-            }
             addCharacterToStringValue(xmlParent, actualCharRead);
             actualCharRead = getNextCharacterInFile(fileInfo);
 
@@ -59,7 +47,6 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
         if (actualCharRead == '>' || actualCharRead == EOF) {
             char buffer_where[1000]; //TODO taille arbitraire
             char buffer_error_value[1000]; //TODO taille arbitraire
-
 
             sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
             sprintf(buffer_error_value, "\'<\' character is expected");
@@ -108,8 +95,11 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                     }
                     else{
                         fseek(fileInfo->fp, -1 , SEEK_CUR);
-                        XML_basic newXmlElement = createXmlBasic(fileInfo, xmlParent);
-
+                        XML_basic* newXmlElement = createXmlBasic(fileInfo, xmlParent);
+                        if(fileInfo->error != NULL)
+                        {
+                            return;
+                        }
                         if(getFirstCharacterAfterSpace(fileInfo) == '/' ){
                             if(getNextCharacterInFile(fileInfo) == '>'){
                                 addNewXmlMarkupToParent(xmlParent,newXmlElement);
@@ -128,7 +118,7 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                         }
                         else{
                             addNewXmlMarkupToParent(xmlParent,newXmlElement);
-                            readInsideXml(fileInfo,&newXmlElement);
+                            readInsideXml(fileInfo,newXmlElement);
                             actualCharRead = getFirstCharacterAfterSpace(fileInfo);
                         }
                         if(fileInfo->error != NULL)
@@ -140,34 +130,39 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
     }
 }
 
-XML_basic createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
-    XML_basic result;
+XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
+    XML_basic* result = malloc(sizeof(XML_basic));
 
-    result.elementName = getElementName(fileInfo);
+    result->elementName = getElementName(fileInfo);
 
-    result.parent = xmlParent;
+    result->parent = xmlParent;
 
-    result.markupList = NULL;
-    result.markupCapacity = 0;
-    result.markupSize = 0;
+    result->markupList = NULL;
+    result->markupCapacity = 0;
+    result->markupSize = 0;
 
-    result.value = NULL;
-    result.valueSize = 0;
-    result.valueCapacity = 0;
+    result->value = NULL;
+    result->valueSize = 0;
+    result->valueCapacity = 0;
 
-    /*
-     * result.attributeList = NULL;
-     * result.attributeSize = 0;
-     * result.attributeCapacity = 0;
-     */
+    result->attributeList = NULL;
+    result->attributeSize = 0;
+    result->attributeCapacity = 0;
 
-    /*
-     * if(getFirstCharacterAfterSpace(fileInfo) != >){
-     *      result.attribute = getAttribute(fileInfo);
-     * }
-    */
-
-
+    char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
+    while(actualCharacterRead != '>' && actualCharacterRead != '/'){
+        fseek(fileInfo->fp,-1,SEEK_CUR);
+        fileInfo->actualColumn--;
+        addAttributeToXmlMarkup(fileInfo, result);
+        if(fileInfo->error != NULL)
+        {
+            free(result);
+            return NULL;
+        }
+        actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
+    }
+    fseek(fileInfo->fp,-1,SEEK_CUR);
+    fileInfo->actualColumn--;
     return result;
 }
 
@@ -186,33 +181,36 @@ XML_basic *createRootXmlBasic(File_information *fileInfo) {
     result->valueSize = 0;
     result->valueCapacity = 0;
 
-    /*
-     * result->attributeList = NULL;
-     * result->attributeSize = 0;
-     * result->attributeCapacity = 0;
-     */
+    result->attributeList = NULL;
+    result->attributeSize = 0;
+    result->attributeCapacity = 0;
 
-    /*
-     * if(getFirstCharacterAfterSpace(fileInfo) != >){
-     *      result->attribute = getAttribute(fileInfo);
-     * }
-    */
-
-    printf("%c", getFirstCharacterAfterSpace(fileInfo)); //todo suppr
+    char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
+    while(actualCharacterRead != '>' && actualCharacterRead != '/'){
+        fseek(fileInfo->fp,-1,SEEK_CUR);
+        fileInfo->actualColumn--;
+        addAttributeToXmlMarkup(fileInfo, result);
+        if(fileInfo->error != NULL)
+        {
+            free(result);
+            return NULL;
+        }
+        actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
+     }
     return result;
 }
 
-void addNewXmlMarkupToParent(XML_basic *xmlParent, XML_basic xmlChild) {
+void addNewXmlMarkupToParent(XML_basic *xmlParent, XML_basic *xmlChild) {
     if(xmlParent->markupList == NULL){
 
         xmlParent->markupCapacity = 10;
-        xmlParent->markupList = malloc(sizeof(XML_basic)*xmlParent->markupCapacity);
+        xmlParent->markupList = malloc(sizeof(XML_basic*)*xmlParent->markupCapacity);
         xmlParent->markupSize = 0;
     }
     if(xmlParent->markupSize == xmlParent->markupCapacity){
 
         xmlParent->markupCapacity *= 2;
-        XML_basic* newMarkupList = malloc(sizeof(XML_basic)*xmlParent->markupCapacity);
+        XML_basic** newMarkupList = malloc(sizeof(XML_basic*)*xmlParent->markupCapacity);
         for(int i = 0 ; i < xmlParent->markupSize ; i++){
             newMarkupList[i] = xmlParent->markupList[i];
         }
@@ -220,4 +218,5 @@ void addNewXmlMarkupToParent(XML_basic *xmlParent, XML_basic xmlChild) {
         xmlParent->markupList = newMarkupList;
     }
     xmlParent->markupList[xmlParent->markupSize] = xmlChild;
+    xmlParent->markupSize++;
 }

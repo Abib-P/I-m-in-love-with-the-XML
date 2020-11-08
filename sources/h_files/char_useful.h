@@ -9,6 +9,8 @@
 #include "read_xml.h"
 
 char * getElementName(File_information *fileInfo);
+char * getAttributeName(File_information *fileInfo);
+char * getAttributeValue(File_information *fileInfo);
 void addCharacterToStringValue(XML_basic* ActualXmlMarkup, char characterToPut);
 void removeFinalSpacesOfString(char* string);
 

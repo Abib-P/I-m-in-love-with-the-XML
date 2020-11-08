@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "error_gestion.h"
 #include "file_information.h"
+#include "read_attribute.h"
 
 typedef struct XML_basic{
     char* elementName ;
@@ -15,20 +16,18 @@ typedef struct XML_basic{
     int valueSize;
     int valueCapacity;
     struct XML_basic* parent;
-    struct XML_basic* markupList;
-    /*
-     * struct Attribute attributeList;
-     * int attributeSize;
-     * int attributeCapacity;
-     */
+    struct XML_basic** markupList;
     int markupSize;
     int markupCapacity;
+    struct Attribute** attributeList;
+    int attributeSize;
+    int attributeCapacity;
 } XML_basic;
 
 XML_basic* readXml(File_information* fileInformation);
 void readInsideXml(File_information* fileInfo, XML_basic* xmlParent);
 XML_basic* createRootXmlBasic(File_information* fileInformation);
-XML_basic createXmlBasic(File_information* fileInformation, XML_basic* xmlParent);
-void addNewXmlMarkupToParent(XML_basic* xmlParent, XML_basic xmlChild);
+XML_basic* createXmlBasic(File_information* fileInformation, XML_basic* xmlParent);
+void addNewXmlMarkupToParent(XML_basic* xmlParent, XML_basic* xmlChild);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READXML_H

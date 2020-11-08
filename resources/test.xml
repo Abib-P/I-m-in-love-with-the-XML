@@ -1,7 +1,7 @@
-<classrooms>
-	<classroom>  AL (is the best)     </classroom>
-    <classroom>IABD	</classroom>
-    <classroom>        MOC</classroom>
-    <classroom>IBC </classroom>
-    <esgi><to>plein de belle chose<truc/></to></esgi>
+<classrooms nm="D"d="D <">
+	<classroom1>  AL (is the best)     </classroom1>
+    <classroom2 mlg="flantier">IABD	</classroom2>
+    <classroom3>        MOC</classroom3>
+    <classroom4>IBC </classroom4>
+    <esgi><to>plein de belle chose<truc mm="10"/></to></esgi>
 </classrooms>
