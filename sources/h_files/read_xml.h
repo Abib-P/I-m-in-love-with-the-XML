@@ -6,6 +6,7 @@
 #define I_M_IN_LOVE_WITH_THE_XML_READXML_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "error_gestion.h"
 #include "file_information.h"
 #include "read_attribute.h"

@@ -5,6 +5,9 @@
 #ifndef I_M_IN_LOVE_WITH_THE_XML_ERROR_GESTION_H
 #define I_M_IN_LOVE_WITH_THE_XML_ERROR_GESTION_H
 
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef struct ERROR{
     char* where;
     char* error_value ;

@@ -6,14 +6,12 @@
 
 File_information *initialiseFileInformation(char *fileName) {
 
-    File_information* result = calloc(1, sizeof(File_information));
-    errno_t errFile = fopen_s(&result->fp,fileName,"r");
+    File_information* result = malloc(sizeof(File_information));
+    result->fp = fopen(fileName,"r");
 
-    if(errFile != 0) //error when fopen_s()
+    if(result->fp == NULL) //error when fopen_s()
     {
-        char errorBuffer[1000]; //todo taille arbitraire
-        strerror_s(errorBuffer, sizeof errorBuffer, errFile);
-        fprintf_s(stderr, "cannot open file '%s': %s\n",fileName, errorBuffer);
+        fprintf(stderr, "cannot open file '%s'\n",fileName);
         fclose(result->fp);
         return NULL;
     }

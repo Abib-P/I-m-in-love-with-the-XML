@@ -7,6 +7,8 @@
 
 #include "file_information.h"
 #include "read_xml.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct Attribute{
     char* attributeName;

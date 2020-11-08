@@ -7,6 +7,8 @@
 
 #include "file_information.h"
 #include "read_xml.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 char * getElementName(File_information *fileInfo);
 char * getAttributeName(File_information *fileInfo);
