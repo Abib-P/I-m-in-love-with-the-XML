@@ -10,5 +10,6 @@
 
 char * getElementName(File_information *fileInfo);
 void addCharacterToStringValue(XML_basic* ActualXmlMarkup, char characterToPut);
+void removeFinalSpacesOfString(char* string);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_CHAR_USEFUL_H

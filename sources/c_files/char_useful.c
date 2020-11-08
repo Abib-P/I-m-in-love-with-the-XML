@@ -22,7 +22,7 @@ char *getElementName(File_information *fileInfo) {
     bufferSize++;
     actualCharRead = (char)fgetc(fileInfo->fp);
     fileInfo->actualColumn++;
-    while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF )
+    while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF && actualCharRead != '/')
     {
         buffer[bufferSize] = actualCharRead;
         bufferSize++;
@@ -73,4 +73,25 @@ void addCharacterToStringValue(XML_basic* actualXmlMarkup, char characterToPut) 
     actualXmlMarkup->valueSize++;
     actualXmlMarkup->value[actualXmlMarkup->valueSize] = 0;
 
+}
+
+void removeFinalSpacesOfString(char *string) {
+    if(string == NULL)
+        return;
+    int indexForCut = -1;
+    int index = 0;
+    while(string[index] != 0)
+    {
+        if( (string[index] == ' ' || string[index] == '\n' || string[index] == '\t') && indexForCut == -1){
+            indexForCut = index;
+        }
+        if( (string[index] != ' ' && string[index] != '\n' || string[index] == '\t') && indexForCut != -1) {
+            indexForCut = -1;
+        }
+        index++;
+    }
+    if(indexForCut != -1)
+    {
+        string[indexForCut] = 0;
+    }
 }

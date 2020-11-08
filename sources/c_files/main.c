@@ -3,7 +3,7 @@
 #include "../h_files/file_information.h" //TODO update the #include section
 #include "../h_files/read_xml.h"
 
-#define EXIT_SUCCESS 0 //todo valgrind
+#define EXIT_SUCCESS 0 //todo install valgrind
 #define EXIT_FAILURE 1 //todo install WSL for linux
 
 int main() {

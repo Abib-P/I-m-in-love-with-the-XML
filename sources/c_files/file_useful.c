@@ -7,7 +7,7 @@
 char getFirstCharacterAfterSpace(File_information *fileInformation) {
 
     char actualCharRead = (char)fgetc(fileInformation->fp);
-    while(actualCharRead == ' ' || actualCharRead == '\n')
+    while(actualCharRead == ' ' || actualCharRead == '\n' || actualCharRead == '\t')
     {
         if(actualCharRead == '\n') {
             fileInformation->actualColumn = 0;
