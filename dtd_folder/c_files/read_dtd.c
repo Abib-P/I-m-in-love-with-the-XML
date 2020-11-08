@@ -17,18 +17,21 @@ void initMyElem(element* myElem, int capacity) {
 }
 
 // retrieve content of dtd -> [ _our_content_ ]
-void find_dtd_content(File_information* fileInfo) {
-    int size_myElem = 0;
+element* find_dtd_content(File_information* fileInfo, int* size) {
+    int size_myElem = *size;
     int capacity = 10;
-    element* myElem = calloc(capacity, sizeof(element));
-    initMyElem(myElem, capacity);
+    element* result = calloc(capacity, sizeof(element));
+    initMyElem(result, capacity);
 
     for (char c = getFirstCharacterAfterSpace(fileInfo); c != EOF; c = getNextCharacterInFile(fileInfo)) {
         if (c == '[') {
-            find_dtd_elements(fileInfo, ftell(fileInfo->fp), myElem, &size_myElem);
+            find_dtd_elements(fileInfo, ftell(fileInfo->fp), result, &size_myElem);
             break;
         }
     }
+
+    *size =size_myElem;
+    return result;
 }
 
 // retrieve content of dtd_element -> [ < _our_content_ /> ]
@@ -37,8 +40,6 @@ void find_dtd_elements(File_information* fileInfo, int pos, element* myElem, int
 
     for (char c = getFirstCharacterAfterSpace(fileInfo); c != ']'; c = getNextCharacterInFile(fileInfo)) {
         if (c == '<') {
-            printf("\n");
-            printf(" size : %d | ", *size_myElem);
             find_dtd_element(fileInfo, ftell(fileInfo->fp), myElem, *size_myElem);
             *size_myElem += 1;
         }
@@ -82,29 +83,24 @@ void retrieve_dtd_info(char* str, element* myElem, int size_myElem) {
 
 // stock the type into an element
 void get_dtd_type(char* str, int* pos, element* myElem, int size_myElem) {
-    printf("Type :");
     int i = *pos;
     for (int j = 0; str[i] != ' '; j += 1, i += 1) {
         myElem[size_myElem].type[j] = str[i];
     }
     *pos = i;
-    printf("%s", myElem[size_myElem].type);
 }
 
 // stock the name into an element
 void get_dtd_name(char* str, int* pos, element* myElem, int size_myElem) {
-    printf(" | Name :");
     int i = *pos;
     for (int j = 0; str[i] != '('; j += 1, i += 1) {
         myElem[size_myElem].name[j] = str[i];
     }
     *pos = i;
-    printf("%s", myElem[size_myElem].name);
 }
 
 // stock params into an element
 void get_dtd_param(char* str, int* pos, element* myElem, int size_myElem) {
-    printf("| Param :");
     int i = *pos;
 
     // parameter = #PCDATA
@@ -112,10 +108,10 @@ void get_dtd_param(char* str, int* pos, element* myElem, int size_myElem) {
         for (int j = 0; str[i] != ')'; j += 1, i += 1) {
             myElem[size_myElem].parameters.pcData[j] = str[i];
         }
-        printf("%s", myElem[size_myElem].parameters.pcData);
     }
     // parameter(s) = child(s)
     else {
+        strcpy(myElem[size_myElem].parameters.pcData, "\0");
         myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size] = malloc(sizeof(char) * 20);
         for (int j = 0; str[i] != ')'; j += 1, i += 1) {
 
@@ -139,11 +135,6 @@ void get_dtd_param(char* str, int* pos, element* myElem, int size_myElem) {
                 myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size][j] = str[i];
             }
         }
-
-        for (int i = 0; i <= myElem[size_myElem].parameters.elements_size; i += 1) {
-            printf("%s ", myElem[size_myElem].parameters.elements[i]);
-        }
-
     }
 
     *pos = i;

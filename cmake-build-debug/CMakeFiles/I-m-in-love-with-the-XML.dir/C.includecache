@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/read_dtd.c
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/main.c
+stdio.h
+-
+string.h
+-
 ../h_files/read_dtd.h
 H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/read_dtd.h
 
