@@ -4,6 +4,7 @@
 
 #include "../h_files/read_dtd.h"
 
+// todo
 void initMyElem(element* myElem, int capacity) {
     for (int i = 0; i < capacity; i += 1) {
         myElem[i].type = calloc(20, sizeof(char));
@@ -22,8 +23,8 @@ void find_dtd_content(File_information* fileInfo) {
     element* myElem = calloc(capacity, sizeof(element));
     initMyElem(myElem, capacity);
 
-    for (int i = fgetc(fileInfo->fp); i != EOF; i = fgetc(fileInfo->fp)) {
-        if (i == '[') {
+    for (char c = getFirstCharacterAfterSpace(fileInfo); c != EOF; c = getNextCharacterInFile(fileInfo)) {
+        if (c == '[') {
             find_dtd_elements(fileInfo, ftell(fileInfo->fp), myElem, &size_myElem);
             break;
         }
@@ -34,8 +35,8 @@ void find_dtd_content(File_information* fileInfo) {
 void find_dtd_elements(File_information* fileInfo, int pos, element* myElem, int* size_myElem) {
     fseek(fileInfo->fp, pos, SEEK_SET);
 
-    for (int i = fgetc(fileInfo->fp); i != ']'; i = fgetc(fileInfo->fp)) {
-        if (i == '<') {
+    for (char c = getFirstCharacterAfterSpace(fileInfo); c != ']'; c = getNextCharacterInFile(fileInfo)) {
+        if (c == '<') {
             printf("\n");
             printf(" size : %d | ", *size_myElem);
             find_dtd_element(fileInfo, ftell(fileInfo->fp), myElem, *size_myElem);
@@ -50,7 +51,7 @@ void find_dtd_element(File_information* fileInfo, int pos, element* myElem, int 
     char* str = calloc(255, sizeof(char));
 
     int i = 0;
-    for (char c = fgetc(fileInfo->fp); c != '>'; c = fgetc(fileInfo->fp), i += 1) {
+    for (char c = getFirstCharacterAfterSpace(fileInfo); c != '>'; c = getNextCharacterInFile(fileInfo), i += 1) {
         str[i] = c;
     }
     str[i] = '\0';

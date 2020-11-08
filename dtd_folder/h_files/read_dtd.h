@@ -10,6 +10,7 @@
 #include <string.h>
 #include "error_gestion.h"
 #include "file_information.h"
+#include "file_useful.h"
 
 
 /* myDTD ########################################################## */

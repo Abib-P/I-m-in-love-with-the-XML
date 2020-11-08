@@ -22,6 +22,12 @@ stdlib.h
 string.h
 -
 
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_useful.h
+stdio.h
+-
+file_information.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_information.h
+
 H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/read_dtd.h
 stdio.h
 -
@@ -33,4 +39,6 @@ error_gestion.h
 H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/error_gestion.h
 file_information.h
 H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_information.h
+file_useful.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_useful.h
 

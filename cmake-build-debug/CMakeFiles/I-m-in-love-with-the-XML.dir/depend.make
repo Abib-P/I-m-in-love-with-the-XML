@@ -16,10 +16,12 @@ CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_useful.c.obj: ..
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj: ../dtd_folder/c_files/main.c
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj: ../dtd_folder/h_files/error_gestion.h
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj: ../dtd_folder/h_files/file_information.h
+CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj: ../dtd_folder/h_files/file_useful.h
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj: ../dtd_folder/h_files/read_dtd.h
 
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj: ../dtd_folder/c_files/read_dtd.c
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj: ../dtd_folder/h_files/error_gestion.h
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj: ../dtd_folder/h_files/file_information.h
+CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj: ../dtd_folder/h_files/file_useful.h
 CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj: ../dtd_folder/h_files/read_dtd.h
 
