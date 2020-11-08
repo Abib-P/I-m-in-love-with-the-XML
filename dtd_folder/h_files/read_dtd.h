@@ -33,13 +33,13 @@ typedef struct element
 /* PROTOTYPES ########################################################## */
 
 void initMyElem(element* myElem, int capacity);
-void getElements(File_information*);
-void getElements_2(File_information*, int, element*, int* size_myElem);
-void getElements_3(File_information*, int, element*, int size_myElem);
-void getElements_4(char*, element*, int size_myElem);
-void getType(char* str, int* i, element*, int size_myElem);
-void getName(char* str, int* i, element*, int size_myElem);
-void getParam(char* str, int* i, element*, int size_myElem);
+void find_dtd_content(File_information*);
+void find_dtd_elements(File_information*, int, element*, int* size_myElem);
+void find_dtd_element(File_information*, int, element*, int size_myElem);
+void retrieve_dtd_info(char*, element*, int size_myElem);
+void get_dtd_type(char* str, int* i, element*, int size_myElem);
+void get_dtd_name(char* str, int* i, element*, int size_myElem);
+void get_dtd_param(char* str, int* i, element*, int size_myElem);
 
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H
