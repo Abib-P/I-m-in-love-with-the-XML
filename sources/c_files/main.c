@@ -8,6 +8,7 @@
 //todo fix the column of file_information
 //todo count the comment for the xml file
 //todo treat the instruction markup (<?xml-stylesheet ... ?>)
+//todo add attribute to xml_basic
 
 int main() {
     char * fileName = "../resources/test.xml";
