@@ -67,10 +67,10 @@ RM = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = H:\Projects\ESGI
+CMAKE_SOURCE_DIR = H:\Projects\C\I-m-in-love-with-the-XML
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = H:\Projects\ESGI\cmake-build-debug
+CMAKE_BINARY_DIR = H:\Projects\C\I-m-in-love-with-the-XML\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\Projects\ESGI\cmake-build-debug\CMakeFiles H:\Projects\ESGI\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start H:\Projects\C\I-m-in-love-with-the-XML\cmake-build-debug\CMakeFiles H:\Projects\C\I-m-in-love-with-the-XML\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\Projects\ESGI\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start H:\Projects\C\I-m-in-love-with-the-XML\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,71 +130,152 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ESGI
+# Target rules for targets named I-m-in-love-with-the-XML
 
 # Build rule for target.
-ESGI: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ESGI
-.PHONY : ESGI
+I-m-in-love-with-the-XML: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 I-m-in-love-with-the-XML
+.PHONY : I-m-in-love-with-the-XML
 
 # fast build rule for target.
-ESGI/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/build
-.PHONY : ESGI/fast
+I-m-in-love-with-the-XML/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/build
+.PHONY : I-m-in-love-with-the-XML/fast
 
-I-m-in-love-with-the-XML/c_files/main.obj: I-m-in-love-with-the-XML/c_files/main.c.obj
+dtd_folder/c_files/error_gestion.obj: dtd_folder/c_files/error_gestion.c.obj
 
-.PHONY : I-m-in-love-with-the-XML/c_files/main.obj
-
-# target to build an object file
-I-m-in-love-with-the-XML/c_files/main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/main.c.obj
-.PHONY : I-m-in-love-with-the-XML/c_files/main.c.obj
-
-I-m-in-love-with-the-XML/c_files/main.i: I-m-in-love-with-the-XML/c_files/main.c.i
-
-.PHONY : I-m-in-love-with-the-XML/c_files/main.i
-
-# target to preprocess a source file
-I-m-in-love-with-the-XML/c_files/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/main.c.i
-.PHONY : I-m-in-love-with-the-XML/c_files/main.c.i
-
-I-m-in-love-with-the-XML/c_files/main.s: I-m-in-love-with-the-XML/c_files/main.c.s
-
-.PHONY : I-m-in-love-with-the-XML/c_files/main.s
-
-# target to generate assembly for a file
-I-m-in-love-with-the-XML/c_files/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/main.c.s
-.PHONY : I-m-in-love-with-the-XML/c_files/main.c.s
-
-I-m-in-love-with-the-XML/c_files/read_dtd.obj: I-m-in-love-with-the-XML/c_files/read_dtd.c.obj
-
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.obj
+.PHONY : dtd_folder/c_files/error_gestion.obj
 
 # target to build an object file
-I-m-in-love-with-the-XML/c_files/read_dtd.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/read_dtd.c.obj
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.c.obj
+dtd_folder/c_files/error_gestion.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/error_gestion.c.obj
+.PHONY : dtd_folder/c_files/error_gestion.c.obj
 
-I-m-in-love-with-the-XML/c_files/read_dtd.i: I-m-in-love-with-the-XML/c_files/read_dtd.c.i
+dtd_folder/c_files/error_gestion.i: dtd_folder/c_files/error_gestion.c.i
 
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.i
+.PHONY : dtd_folder/c_files/error_gestion.i
 
 # target to preprocess a source file
-I-m-in-love-with-the-XML/c_files/read_dtd.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/read_dtd.c.i
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.c.i
+dtd_folder/c_files/error_gestion.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/error_gestion.c.i
+.PHONY : dtd_folder/c_files/error_gestion.c.i
 
-I-m-in-love-with-the-XML/c_files/read_dtd.s: I-m-in-love-with-the-XML/c_files/read_dtd.c.s
+dtd_folder/c_files/error_gestion.s: dtd_folder/c_files/error_gestion.c.s
 
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.s
+.PHONY : dtd_folder/c_files/error_gestion.s
 
 # target to generate assembly for a file
-I-m-in-love-with-the-XML/c_files/read_dtd.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ESGI.dir\build.make CMakeFiles/ESGI.dir/I-m-in-love-with-the-XML/c_files/read_dtd.c.s
-.PHONY : I-m-in-love-with-the-XML/c_files/read_dtd.c.s
+dtd_folder/c_files/error_gestion.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/error_gestion.c.s
+.PHONY : dtd_folder/c_files/error_gestion.c.s
+
+dtd_folder/c_files/file_information.obj: dtd_folder/c_files/file_information.c.obj
+
+.PHONY : dtd_folder/c_files/file_information.obj
+
+# target to build an object file
+dtd_folder/c_files/file_information.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_information.c.obj
+.PHONY : dtd_folder/c_files/file_information.c.obj
+
+dtd_folder/c_files/file_information.i: dtd_folder/c_files/file_information.c.i
+
+.PHONY : dtd_folder/c_files/file_information.i
+
+# target to preprocess a source file
+dtd_folder/c_files/file_information.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_information.c.i
+.PHONY : dtd_folder/c_files/file_information.c.i
+
+dtd_folder/c_files/file_information.s: dtd_folder/c_files/file_information.c.s
+
+.PHONY : dtd_folder/c_files/file_information.s
+
+# target to generate assembly for a file
+dtd_folder/c_files/file_information.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_information.c.s
+.PHONY : dtd_folder/c_files/file_information.c.s
+
+dtd_folder/c_files/file_useful.obj: dtd_folder/c_files/file_useful.c.obj
+
+.PHONY : dtd_folder/c_files/file_useful.obj
+
+# target to build an object file
+dtd_folder/c_files/file_useful.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_useful.c.obj
+.PHONY : dtd_folder/c_files/file_useful.c.obj
+
+dtd_folder/c_files/file_useful.i: dtd_folder/c_files/file_useful.c.i
+
+.PHONY : dtd_folder/c_files/file_useful.i
+
+# target to preprocess a source file
+dtd_folder/c_files/file_useful.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_useful.c.i
+.PHONY : dtd_folder/c_files/file_useful.c.i
+
+dtd_folder/c_files/file_useful.s: dtd_folder/c_files/file_useful.c.s
+
+.PHONY : dtd_folder/c_files/file_useful.s
+
+# target to generate assembly for a file
+dtd_folder/c_files/file_useful.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/file_useful.c.s
+.PHONY : dtd_folder/c_files/file_useful.c.s
+
+dtd_folder/c_files/main.obj: dtd_folder/c_files/main.c.obj
+
+.PHONY : dtd_folder/c_files/main.obj
+
+# target to build an object file
+dtd_folder/c_files/main.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.obj
+.PHONY : dtd_folder/c_files/main.c.obj
+
+dtd_folder/c_files/main.i: dtd_folder/c_files/main.c.i
+
+.PHONY : dtd_folder/c_files/main.i
+
+# target to preprocess a source file
+dtd_folder/c_files/main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.i
+.PHONY : dtd_folder/c_files/main.c.i
+
+dtd_folder/c_files/main.s: dtd_folder/c_files/main.c.s
+
+.PHONY : dtd_folder/c_files/main.s
+
+# target to generate assembly for a file
+dtd_folder/c_files/main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/main.c.s
+.PHONY : dtd_folder/c_files/main.c.s
+
+dtd_folder/c_files/read_dtd.obj: dtd_folder/c_files/read_dtd.c.obj
+
+.PHONY : dtd_folder/c_files/read_dtd.obj
+
+# target to build an object file
+dtd_folder/c_files/read_dtd.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.obj
+.PHONY : dtd_folder/c_files/read_dtd.c.obj
+
+dtd_folder/c_files/read_dtd.i: dtd_folder/c_files/read_dtd.c.i
+
+.PHONY : dtd_folder/c_files/read_dtd.i
+
+# target to preprocess a source file
+dtd_folder/c_files/read_dtd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.i
+.PHONY : dtd_folder/c_files/read_dtd.c.i
+
+dtd_folder/c_files/read_dtd.s: dtd_folder/c_files/read_dtd.c.s
+
+.PHONY : dtd_folder/c_files/read_dtd.s
+
+# target to generate assembly for a file
+dtd_folder/c_files/read_dtd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\I-m-in-love-with-the-XML.dir\build.make CMakeFiles/I-m-in-love-with-the-XML.dir/dtd_folder/c_files/read_dtd.c.s
+.PHONY : dtd_folder/c_files/read_dtd.c.s
 
 # Help Target
 help:
@@ -204,13 +285,22 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... ESGI
-	@echo ... I-m-in-love-with-the-XML/c_files/main.obj
-	@echo ... I-m-in-love-with-the-XML/c_files/main.i
-	@echo ... I-m-in-love-with-the-XML/c_files/main.s
-	@echo ... I-m-in-love-with-the-XML/c_files/read_dtd.obj
-	@echo ... I-m-in-love-with-the-XML/c_files/read_dtd.i
-	@echo ... I-m-in-love-with-the-XML/c_files/read_dtd.s
+	@echo ... I-m-in-love-with-the-XML
+	@echo ... dtd_folder/c_files/error_gestion.obj
+	@echo ... dtd_folder/c_files/error_gestion.i
+	@echo ... dtd_folder/c_files/error_gestion.s
+	@echo ... dtd_folder/c_files/file_information.obj
+	@echo ... dtd_folder/c_files/file_information.i
+	@echo ... dtd_folder/c_files/file_information.s
+	@echo ... dtd_folder/c_files/file_useful.obj
+	@echo ... dtd_folder/c_files/file_useful.i
+	@echo ... dtd_folder/c_files/file_useful.s
+	@echo ... dtd_folder/c_files/main.obj
+	@echo ... dtd_folder/c_files/main.i
+	@echo ... dtd_folder/c_files/main.s
+	@echo ... dtd_folder/c_files/read_dtd.obj
+	@echo ... dtd_folder/c_files/read_dtd.i
+	@echo ... dtd_folder/c_files/read_dtd.s
 .PHONY : help
 
 

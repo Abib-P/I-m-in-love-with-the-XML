@@ -4,8 +4,9 @@
 
 
 int main() {
-
-    getElements();
+    char* fileName = "H:\\Projects\\C\\I-m-in-love-with-the-XML\\dtd_folder\\dtd_files\\myDTD.dtd";
+    File_information* dtdFileInfo = initialiseFileInformation(fileName);
+    getElements(dtdFileInfo);
     return 0;
 
 }

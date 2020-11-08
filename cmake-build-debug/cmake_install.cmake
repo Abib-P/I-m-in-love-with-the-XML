@@ -1,4 +1,4 @@
-# Install script for directory: H:/Projects/ESGI
+# Install script for directory: H:/Projects/C/I-m-in-love-with-the-XML
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "H:/Projects/ESGI/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

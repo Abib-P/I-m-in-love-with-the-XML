@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/read_dtd.c
+../h_files/read_dtd.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/read_dtd.h
+
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/error_gestion.h
+
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_information.h
+stdio.h
+-
+error_gestion.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/error_gestion.h
+stdlib.h
+-
+string.h
+-
+
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/read_dtd.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+error_gestion.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/error_gestion.h
+file_information.h
+H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/h_files/file_information.h
+

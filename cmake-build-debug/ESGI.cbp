@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="H:/Projects/ESGI/cmake-build-debug"/>
+				<Option working_dir="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ESGI">
-				<Option output="H:/Projects/ESGI/cmake-build-debug/ESGI.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/Projects/ESGI/cmake-build-debug"/>
+			<Target title="I-m-in-love-with-the-XML">
+				<Option output="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/I-m-in-love-with-the-XML.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -29,15 +29,15 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 ESGI"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 I-m-in-love-with-the-XML"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ESGI/fast">
-				<Option output="H:/Projects/ESGI/cmake-build-debug/ESGI.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/Projects/ESGI/cmake-build-debug"/>
+			<Target title="I-m-in-love-with-the-XML/fast">
+				<Option output="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/I-m-in-love-with-the-XML.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -47,40 +47,52 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 ESGI/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 I-m-in-love-with-the-XML/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="H:/Projects/ESGI/cmake-build-debug"/>
+				<Option working_dir="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="H:/Projects/ESGI/cmake-build-debug"/>
+				<Option working_dir="H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/ESGI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="H:/Projects/ESGI/I-m-in-love-with-the-XML/c_files/main.c">
-			<Option target="ESGI"/>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/error_gestion.c">
+			<Option target="I-m-in-love-with-the-XML"/>
 		</Unit>
-		<Unit filename="H:/Projects/ESGI/I-m-in-love-with-the-XML/c_files/read_dtd.c">
-			<Option target="ESGI"/>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/file_information.c">
+			<Option target="I-m-in-love-with-the-XML"/>
 		</Unit>
-		<Unit filename="H:/Projects/ESGI/CMakeLists.txt">
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/file_useful.c">
+			<Option target="I-m-in-love-with-the-XML"/>
+		</Unit>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/main.c">
+			<Option target="I-m-in-love-with-the-XML"/>
+		</Unit>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/read_dtd.c">
+			<Option target="I-m-in-love-with-the-XML"/>
+		</Unit>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/dtd_files/myDtd.dtd">
+			<Option target="I-m-in-love-with-the-XML"/>
+		</Unit>
+		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

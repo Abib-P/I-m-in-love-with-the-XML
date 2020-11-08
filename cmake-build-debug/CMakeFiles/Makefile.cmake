@@ -48,5 +48,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/ESGI.dir/DependInfo.cmake"
+  "CMakeFiles/I-m-in-love-with-the-XML.dir/DependInfo.cmake"
   )
