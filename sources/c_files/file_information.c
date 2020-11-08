@@ -11,7 +11,7 @@ File_information *initialiseFileInformation(char *fileName) {
 
     if(errFile != 0) //error when fopen_s()
     {
-        char errorBuffer[1000]; //FIXME taille arbitraire
+        char errorBuffer[1000]; //todo taille arbitraire
         strerror_s(errorBuffer, sizeof errorBuffer, errFile);
         fprintf_s(stderr, "cannot open file '%s': %s\n",fileName, errorBuffer);
         fclose(result->fp);
