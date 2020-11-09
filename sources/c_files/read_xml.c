@@ -156,8 +156,10 @@ XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
         addAttributeToXmlMarkup(fileInfo, result);
         if(fileInfo->error != NULL)
         {
-            printf("test");
-            free(result);
+            if(result->elementName == NULL)
+                free(result->elementName);
+            if(result == NULL)
+                free(result);
             return NULL;
         }
         actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
