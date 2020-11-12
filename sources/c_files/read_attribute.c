@@ -6,7 +6,6 @@
 #include "../h_files/char_useful.h"
 
 void addAttributeToXmlMarkup(File_information *fileInfo, XML_basic *xmlParent) {
-
     if(xmlParent->attributeList == NULL){
         xmlParent->attributeCapacity = 5;
         xmlParent->attributeList = malloc(sizeof(Attribute*)*xmlParent->attributeCapacity);
@@ -16,8 +15,8 @@ void addAttributeToXmlMarkup(File_information *fileInfo, XML_basic *xmlParent) {
         xmlParent->attributeCapacity *= 2;
         Attribute** newAttributeList = malloc(sizeof(Attribute*)*xmlParent->attributeCapacity);
         for(int i = 0 ; i < xmlParent->attributeSize ; i++){
-            newAttributeList[i]->attributeName = xmlParent->attributeList[i]->attributeName;
-            newAttributeList[i]->attributeValue = xmlParent->attributeList[i]->attributeValue;
+            newAttributeList[i] = xmlParent->attributeList[i];
+            newAttributeList[i] = xmlParent->attributeList[i];
         }
         free(xmlParent->attributeList);
         xmlParent->attributeList = newAttributeList;
@@ -29,9 +28,7 @@ void addAttributeToXmlMarkup(File_information *fileInfo, XML_basic *xmlParent) {
     char * attributeValue = getAttributeValue(fileInfo);
     if(fileInfo->error != NULL){
         if (attributeName != NULL) {
-            printf("dd");
             free(attributeName);
-            printf("oo");
         }
         return;
     }
@@ -39,4 +36,19 @@ void addAttributeToXmlMarkup(File_information *fileInfo, XML_basic *xmlParent) {
     xmlParent->attributeList[xmlParent->attributeSize]->attributeValue = attributeValue;
     xmlParent->attributeList[xmlParent->attributeSize]->attributeName = attributeName;
     xmlParent->attributeSize++;
+}
+
+void freeAttribute(Attribute *attribute) {
+    if(attribute != NULL)
+    {
+        if(attribute->attributeName != NULL)
+        {
+            free(attribute->attributeName);
+        }
+        if(attribute->attributeValue != NULL)
+        {
+            free(attribute->attributeValue);
+        }
+        free(attribute);
+    }
 }

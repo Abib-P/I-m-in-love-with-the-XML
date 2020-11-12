@@ -16,5 +16,6 @@ typedef struct Attribute{
 } Attribute;
 
 void addAttributeToXmlMarkup(File_information * fileInfo,struct XML_basic*  xmlMarkup);
+void freeAttribute(Attribute* attribute);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_ATTRIBUTE_H
