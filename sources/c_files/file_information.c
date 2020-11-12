@@ -16,9 +16,11 @@ File_information *initialiseFileInformation(char *fileName) {
         return NULL;
     }
 
+    result->nbColumnOnLastLine = 0;
     result->actualLine = 1;
     result->fileName = fileName;
     result->actualColumn = 1;
+    result->error = NULL;
 
     return result;
 }
