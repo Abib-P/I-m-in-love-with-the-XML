@@ -10,7 +10,7 @@
 
 typedef struct ERROR{
     char* where;
-    char* error_value ;
+    char* error_value;
 } ERROR;
 
 void showError(ERROR* error);

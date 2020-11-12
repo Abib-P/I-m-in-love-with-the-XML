@@ -3,16 +3,18 @@
 //
 
 #include "../h_files/char_useful.h"
+#include "../h_files/file_useful.h"
 
 char *getElementName(File_information *fileInfo) {
     int bufferSize = 0;
     char buffer[1000]; //TODO taille arbitraire
-    char actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n' || actualCharRead == EOF || actualCharRead == '=')
     {
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "Unexpected character \'%c\', you must enter the markup name", actualCharRead);
         fileInfo->error = createError(buffer_where,buffer_error_value);
@@ -20,19 +22,19 @@ char *getElementName(File_information *fileInfo) {
     }
     buffer[bufferSize] = actualCharRead;
     bufferSize++;
-    actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    actualCharRead = getNextCharacterInFile(fileInfo);
     while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF && actualCharRead != '/' && actualCharRead != '=')
     {
         buffer[bufferSize] = actualCharRead;
         bufferSize++;
-        actualCharRead = (char)fgetc(fileInfo->fp);
-        fileInfo->actualColumn++;
+        actualCharRead = getNextCharacterInFile(fileInfo);
     }
     buffer[bufferSize] = 0;
     if(actualCharRead == '<' || actualCharRead == EOF || actualCharRead == '='){
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "The element %s must be followed by either attribute specifications ,\">\" or \"/>\"", buffer);
         fileInfo->error = createError(buffer_where,buffer_error_value);
@@ -40,8 +42,7 @@ char *getElementName(File_information *fileInfo) {
     }
     char* result = malloc(sizeof(char)*bufferSize);
     strcpy(result,buffer);
-    fseek(fileInfo->fp, -1 , SEEK_CUR);
-    fileInfo->actualColumn--;
+    rewindOnce(fileInfo);
     return result;
 }
 
@@ -81,10 +82,10 @@ void removeFinalSpacesOfString(char *string) {
     int index = 0;
     while(string[index] != 0)
     {
-        if( (string[index] == ' ' || string[index] == '\n' || string[index] == '\t') && indexForCut == -1){
+        if( (string[index] == ' ' || string[index] == '\n' || string[index] == '\t' || string[index] == '\r') && indexForCut == -1){
             indexForCut = index;
         }
-        if( (string[index] != ' ' && string[index] != '\n' || string[index] == '\t') && indexForCut != -1) {
+        if( (string[index] != ' ' && string[index] != '\n' && string[index] != '\t' && string[index] != '\r') && indexForCut != -1) {
             indexForCut = -1;
         }
         index++;
@@ -98,12 +99,13 @@ void removeFinalSpacesOfString(char *string) {
 char* getAttributeName(File_information *fileInfo) {
     int bufferSize = 0;
     char buffer[1000]; //TODO taille arbitraire
-    char actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n' || actualCharRead == EOF || actualCharRead == '=')
     {
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "Unexpected character \'%c\', you must enter the attribute name", actualCharRead);
         fileInfo->error = createError(buffer_where,buffer_error_value);
@@ -111,19 +113,19 @@ char* getAttributeName(File_information *fileInfo) {
     }
     buffer[bufferSize] = actualCharRead;
     bufferSize++;
-    actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    actualCharRead = getNextCharacterInFile(fileInfo);
     while(actualCharRead != '>' && actualCharRead != ' ' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF && actualCharRead != '/' && actualCharRead != '=')
     {
         buffer[bufferSize] = actualCharRead;
         bufferSize++;
-        actualCharRead = (char)fgetc(fileInfo->fp);
-        fileInfo->actualColumn++;
+        actualCharRead = getNextCharacterInFile(fileInfo);
     }
     buffer[bufferSize] = 0;
     if(actualCharRead != '='){
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "The attribute %s must be followed by attribute specifications <markup attribute=\"value\">", buffer);
         fileInfo->error = createError(buffer_where,buffer_error_value);
@@ -137,30 +139,31 @@ char* getAttributeName(File_information *fileInfo) {
 char *getAttributeValue(File_information *fileInfo) {
     int bufferSize = 0;
     char buffer[1000]; //TODO taille arbitraire
-    char actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead != '\"')
     {
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "Unexpected character \'%c\', you must enter the attribute value like this <markup attribute=\"value\">", actualCharRead);
         fileInfo->error = createError(buffer_where,buffer_error_value);
         return NULL;
     }
-    actualCharRead = (char)fgetc(fileInfo->fp);
-    fileInfo->actualColumn++;
+    actualCharRead = getNextCharacterInFile(fileInfo);
     while(actualCharRead != '>' && actualCharRead != '<' && actualCharRead != '\n' && actualCharRead != EOF && actualCharRead != '/' && actualCharRead != '=' && actualCharRead != '\"')
     {
         buffer[bufferSize] = actualCharRead;
         bufferSize++;
-        actualCharRead = (char)fgetc(fileInfo->fp);
-        fileInfo->actualColumn++;
+        actualCharRead = getNextCharacterInFile(fileInfo);
     }
     buffer[bufferSize] = 0;
     if(actualCharRead != '\"'){
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
+
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "Unexpected character \'%c\', attribute value must finished with a \"", actualCharRead);
         fileInfo->error = createError(buffer_where,buffer_error_value);
