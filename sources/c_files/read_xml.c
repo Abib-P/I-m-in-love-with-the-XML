@@ -13,13 +13,12 @@ XML_basic* readXml(File_information* fileInfo) {
         char buffer_where[1000]; //TODO taille arbitraire
         char buffer_error_value[1000]; //TODO taille arbitraire
 
+        rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
         sprintf(buffer_error_value, "\'<\' character is expected");
         fileInfo->error = createError(buffer_where,buffer_error_value);
         return NULL;
     }
-
-    //tant que balise root fermante non trouvé
 
     XML_basic* xmlRootElement = createRootXmlBasic(fileInfo);
     if(fileInfo->error != NULL)
@@ -38,6 +37,7 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
             addCharacterToStringValue(xmlParent, actualCharRead);
             actualCharRead = getNextCharacterInFile(fileInfo);
 
+
             /* //todo user enter an predefined entities (&amp; for & or &quot; for " )
              *if (actualCharRead == '&'){
              *
@@ -48,28 +48,32 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
             char buffer_where[1000]; //TODO taille arbitraire
             char buffer_error_value[1000]; //TODO taille arbitraire
 
+            rewindOnce(fileInfo);
             sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
             sprintf(buffer_error_value, "\'<\' character is expected");
             fileInfo->error = createError(buffer_where, buffer_error_value);
             return;
         } else {
                     removeFinalSpacesOfString(xmlParent->value);
-                    actualCharRead = (char)fgetc(fileInfo->fp);
+                    actualCharRead = getNextCharacterInFile(fileInfo);
                     if(actualCharRead == '/')
                     {
-                        fileInfo->actualColumn++;
 
                         char *bufferElementName = getElementName(fileInfo);
+                        if(fileInfo->error != NULL)
+                        {
+                            return;
+                        }
                         if(strcmp(xmlParent->elementName,bufferElementName) == 0)
                         {
                             if(getFirstCharacterAfterSpace(fileInfo) == '>')
                             {
+                                free(bufferElementName);
                                 return;
                             }
                             else{
                                 char buffer_where[1000]; //TODO taille arbitraire
                                 char buffer_error_value[1000]; //TODO taille arbitraire
-
 
                                 sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
                                 sprintf(buffer_error_value, "the markup must be closed by a \'>\' character");
@@ -94,7 +98,7 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                         }
                     }
                     else{
-                        fseek(fileInfo->fp, -1 , SEEK_CUR);
+                        rewindOnce(fileInfo);
                         XML_basic* newXmlElement = createXmlBasic(fileInfo, xmlParent);
                         if(fileInfo->error != NULL)
                         {
@@ -109,7 +113,7 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                                 char buffer_where[1000]; //TODO taille arbitraire
                                 char buffer_error_value[1000]; //TODO taille arbitraire
 
-
+                                rewindOnce(fileInfo);
                                 sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
                                 sprintf(buffer_error_value, "the character after \'/\' must be \'>\'");
                                 fileInfo->error = createError(buffer_where, buffer_error_value);
@@ -135,8 +139,6 @@ XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
 
     result->elementName = getElementName(fileInfo);
 
-    result->parent = xmlParent;
-
     result->markupList = NULL;
     result->markupCapacity = 0;
     result->markupSize = 0;
@@ -151,8 +153,7 @@ XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
 
     char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
     while(actualCharacterRead != '>' && actualCharacterRead != '/'){
-        fseek(fileInfo->fp,-1,SEEK_CUR);
-        fileInfo->actualColumn--;
+        rewindOnce(fileInfo);
         addAttributeToXmlMarkup(fileInfo, result);
         if(fileInfo->error != NULL)
         {
@@ -164,8 +165,7 @@ XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
         }
         actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
     }
-    fseek(fileInfo->fp,-1,SEEK_CUR);
-    fileInfo->actualColumn--;
+    rewindOnce(fileInfo);
     return result;
 }
 
@@ -173,8 +173,6 @@ XML_basic *createRootXmlBasic(File_information *fileInfo) {
     XML_basic* result = malloc(sizeof(XML_basic));
 
     result->elementName = getElementName(fileInfo);
-
-    result->parent = NULL;
 
     result->markupList = NULL;
     result->markupCapacity = 0;
@@ -190,8 +188,7 @@ XML_basic *createRootXmlBasic(File_information *fileInfo) {
 
     char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
     while(actualCharacterRead != '>' && actualCharacterRead != '/'){
-        fseek(fileInfo->fp,-1,SEEK_CUR);
-        fileInfo->actualColumn--;
+        rewindOnce(fileInfo);
         addAttributeToXmlMarkup(fileInfo, result);
         if(fileInfo->error != NULL)
         {
@@ -222,4 +219,65 @@ void addNewXmlMarkupToParent(XML_basic *xmlParent, XML_basic *xmlChild) {
     }
     xmlParent->markupList[xmlParent->markupSize] = xmlChild;
     xmlParent->markupSize++;
+}
+
+void freeXml_basic(XML_basic *xmlMarkup) {
+    if(xmlMarkup != NULL){
+        if(xmlMarkup->elementName != NULL)
+        {
+            free(xmlMarkup->elementName);
+        }
+        if(xmlMarkup->value != NULL)
+        {
+            free(xmlMarkup->value);
+        }
+        if(xmlMarkup->markupList != NULL)
+        {
+            for (int i = 0; i < xmlMarkup->markupSize; i++) {
+                freeXml_basic(xmlMarkup->markupList[i]);
+            }
+            free(xmlMarkup->markupList);
+        }
+        if(xmlMarkup->attributeList != NULL)
+        {
+            for (int i = 0; i < xmlMarkup->attributeSize; i++) {
+                freeAttribute(xmlMarkup->attributeList[i]);
+            }
+            free(xmlMarkup->attributeList);
+        }
+        free(xmlMarkup);
+    }
+}
+
+void showXmlFile(XML_basic *xmlMarkup, int nbTab) {
+    for (int i = 0; i < nbTab; i++) {
+        printf("\t");
+    }
+    printf("<%s",xmlMarkup->elementName);
+    for (int i = 0; i < xmlMarkup->attributeSize; i++) {
+        printf(" %s=\"%s\"",xmlMarkup->attributeList[i]->attributeName,xmlMarkup->attributeList[i]->attributeValue);
+    }
+    if(xmlMarkup->value == NULL && xmlMarkup->markupList == NULL)
+    {
+        printf("/>\n");
+        return;
+    }
+    if(xmlMarkup->markupList == NULL) {
+        printf(">%s</%s>\n",xmlMarkup->value,xmlMarkup->elementName);
+        return;
+    }
+    printf(">\n");
+    if(xmlMarkup->value != NULL) {
+        for (int i = 0; i < nbTab+1; i++) {
+            printf("\t");
+        }
+        printf("%s\n",xmlMarkup->value);
+    }
+    for (int i = 0; i < xmlMarkup->markupSize; i++) {
+        showXmlFile(xmlMarkup->markupList[i],nbTab+1);
+    }
+    for (int i = 0; i < nbTab; i++) {
+        printf("\t");
+    }
+    printf("</%s>\n",xmlMarkup->elementName);
 }
