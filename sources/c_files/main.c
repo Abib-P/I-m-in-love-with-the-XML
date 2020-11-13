@@ -10,6 +10,9 @@
 //todo the function that free file_information (and close the document)
 
 int main(int argc, char **argv) {
+#ifdef __unix__
+    setenv("DISPLAY", "127.0.0.1:0", 1);
+#endif
     startWindow(argc,argv);
     launchXml("../resources/test.xml");
 }
