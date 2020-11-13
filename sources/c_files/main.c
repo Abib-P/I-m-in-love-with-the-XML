@@ -1,4 +1,5 @@
 #include "../h_files/launch_xml.h"
+#include "../h_files/gtk_functions.h"
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1 //todo treat \r \n \t as invisible character of getCharacterAfterSpace
@@ -9,5 +10,6 @@
 //todo the function that free file_information (and close the document)
 
 int main(int argc, char **argv) {
+    startWindow(argc,argv);
     launchXml("../resources/test.xml");
 }
