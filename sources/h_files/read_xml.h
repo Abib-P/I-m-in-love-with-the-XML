@@ -32,11 +32,17 @@ typedef struct XML_basic{
 } XML_basic;
 
 XML_basic* readXml(File_information* fileInformation);
+
 void readInsideXml(File_information* fileInfo, XML_basic* xmlParent);
+
 XML_basic* createRootXmlBasic(File_information* fileInformation);
+
 XML_basic* createXmlBasic(File_information* fileInformation, XML_basic* xmlParent);
+
 void addNewXmlMarkupToParent(XML_basic* xmlParent, XML_basic* xmlChild);
+
 void freeXml_basic(XML_basic *xmlMarkup);
+
 void showXmlFile(XML_basic *xmlMarkup, int nbTab);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READXML_H

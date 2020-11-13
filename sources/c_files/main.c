@@ -1,5 +1,4 @@
-#include "../h_files/file_information.h" //TODO update the #include section
-#include "../h_files/read_xml.h"
+#include "../h_files/launch_xml.h"
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1 //todo treat \r \n \t as invisible character of getCharacterAfterSpace
@@ -10,26 +9,5 @@
 //todo the function that free file_information (and close the document)
 
 int main(int argc, char **argv) {
-    char * fileName = "../resources/test.xml";
-
-    File_information* xmlFileInfo = initialiseFileInformation(fileName);
-    XML_basic* xmlFile = NULL;
-
-    if(xmlFileInfo != NULL) //no error during opening file
-    {
-        xmlFile = readXml(xmlFileInfo);
-
-        if (xmlFile != NULL){
-            showXmlFile(xmlFile,0);
-        }
-        free(xmlFile);
-        if(xmlFileInfo->error != NULL)
-        {
-            showError(xmlFileInfo->error);
-        }
-    } else{
-        return EXIT_FAILURE;
-    }
-
-    return EXIT_SUCCESS;
+    launchXml("../resources/test.xml");
 }
