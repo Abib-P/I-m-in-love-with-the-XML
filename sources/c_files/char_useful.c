@@ -3,7 +3,6 @@
 //
 
 #include "../h_files/char_useful.h"
-#include "../h_files/file_useful.h"
 
 char *getElementName(File_information *fileInfo) {
     int bufferSize = 0;

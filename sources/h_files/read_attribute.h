@@ -5,10 +5,10 @@
 #ifndef I_M_IN_LOVE_WITH_THE_XML_READ_ATTRIBUTE_H
 #define I_M_IN_LOVE_WITH_THE_XML_READ_ATTRIBUTE_H
 
+#include "includes.h"
 #include "file_information.h"
 #include "read_xml.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "char_useful.h"
 
 typedef struct Attribute{
     char* attributeName;

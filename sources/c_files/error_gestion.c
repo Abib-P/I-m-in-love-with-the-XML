@@ -3,9 +3,6 @@
 //
 
 #include "../h_files/error_gestion.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void showError(ERROR* err) {
     printf("Error in %s : %s", err->where, err->error_value);

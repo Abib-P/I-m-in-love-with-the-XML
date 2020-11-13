@@ -3,7 +3,6 @@
 //
 
 #include "../h_files/read_attribute.h"
-#include "../h_files/char_useful.h"
 
 void addAttributeToXmlMarkup(File_information *fileInfo, XML_basic *xmlParent) {
     if(xmlParent->attributeList == NULL){

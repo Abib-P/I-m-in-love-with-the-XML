@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include "../h_files/file_information.h" //TODO update the #include section
 #include "../h_files/read_xml.h"
 
@@ -11,7 +9,7 @@
 //todo free actual malloc when returning an error (to not lose the opportunity)
 //todo the function that free file_information (and close the document)
 
-int main() {
+int main(int argc, char **argv) {
     char * fileName = "../resources/test.xml";
 
     File_information* xmlFileInfo = initialiseFileInformation(fileName);

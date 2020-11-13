@@ -5,10 +5,8 @@
 #ifndef I_M_IN_LOVE_WITH_THE_XML_FILE_INFORMATION_H
 #define I_M_IN_LOVE_WITH_THE_XML_FILE_INFORMATION_H
 
-#include <stdio.h>
+#include "includes.h"
 #include "error_gestion.h"
-#include <stdlib.h>
-#include <string.h>
 
 typedef struct File_information{
     FILE* fp;
