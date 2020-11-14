@@ -29,9 +29,10 @@ typedef struct XML_basic{
     struct Attribute** attributeList;
     int attributeSize;
     int attributeCapacity;
+    char* comment;
+    int commentSize;
+    int commentCapacity;
 } XML_basic;
-
-XML_basic* readXml(File_information* fileInformation);
 
 void readInsideXml(File_information* fileInfo, XML_basic* xmlParent);
 

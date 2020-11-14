@@ -3,32 +3,6 @@
 //
 
 #include "../h_files/read_xml.h"
-#include "../h_files/file_useful.h"
-#include "../h_files/char_useful.h"
-
-XML_basic* readXml(File_information* fileInfo) {
-    char actualCharRead = getFirstCharacterAfterSpace(fileInfo);
-    if(actualCharRead != '<')
-    {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
-
-        rewindOnce(fileInfo);
-        sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
-        sprintf(buffer_error_value, "\'<\' character is expected");
-        fileInfo->error = createError(buffer_where,buffer_error_value);
-        return NULL;
-    }
-
-    XML_basic* xmlRootElement = createRootXmlBasic(fileInfo);
-    if(fileInfo->error != NULL)
-    {
-        return xmlRootElement;
-    }
-    readInsideXml(fileInfo, xmlRootElement);
-
-    return xmlRootElement;
-}
 
 void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
     char actualCharRead = getFirstCharacterAfterSpace(fileInfo);
@@ -36,13 +10,45 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
         while (actualCharRead != '<' && actualCharRead != '>' && actualCharRead != EOF) {
             addCharacterToStringValue(xmlParent, actualCharRead);
             actualCharRead = getNextCharacterInFile(fileInfo);
+            if(actualCharRead == '<')
+            {
+                if(getNextCharacterInFile(fileInfo) == '!')
+                {
+                    if(getNextCharacterInFile(fileInfo) == '-')
+                    {
+                        if(getNextCharacterInFile(fileInfo) == '-')
+                        {
+                            readCommentInsideXml(fileInfo,xmlParent);
+                            actualCharRead = getNextCharacterInFile(fileInfo);
+                        }
+                        else{
+                            char buffer_where[1000]; //TODO taille arbitraire
+                            char buffer_error_value[1000]; //TODO taille arbitraire
 
+                            rewindOnce(fileInfo);
+                            sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
+                            sprintf(buffer_error_value, "xml comment must be construct like so : \"<!--comment--> \"");
+                            fileInfo->error = createError(buffer_where,buffer_error_value);
+                            return;
+                        }
+                    }
+                    else{
+                        char buffer_where[1000]; //TODO taille arbitraire
+                        char buffer_error_value[1000]; //TODO taille arbitraire
 
-            /* //todo user enter an predefined entities (&amp; for & or &quot; for " )
-             *if (actualCharRead == '&'){
-             *
-             * }
-            */
+                        rewindOnce(fileInfo);
+                        sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
+                        sprintf(buffer_error_value, "xml comment must be construct like so : \"<!--comment--> \"");
+                        fileInfo->error = createError(buffer_where,buffer_error_value);
+                        return;
+                    }
+                }
+                else
+                {
+                    rewindOnce(fileInfo);
+                }
+            }
+
         }
         if (actualCharRead == '>' || actualCharRead == EOF) {
             char buffer_where[1000]; //TODO taille arbitraire

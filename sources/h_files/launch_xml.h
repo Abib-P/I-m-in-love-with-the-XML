@@ -5,8 +5,8 @@
 #ifndef I_M_IN_LOVE_WITH_THE_XML_LAUNCH_XML_H
 #define I_M_IN_LOVE_WITH_THE_XML_LAUNCH_XML_H
 
-#include "../h_files/file_information.h"
-#include "../h_files/read_xml.h"
+#include "file_information.h"
+#include "xmlfile_read.h"
 
 int launchXml(char *xmlFileName);
 

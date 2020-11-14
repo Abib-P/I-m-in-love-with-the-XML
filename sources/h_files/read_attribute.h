@@ -9,6 +9,7 @@
 #include "file_information.h"
 #include "read_xml.h"
 #include "char_useful.h"
+#include "xmlfile_read.h"
 
 typedef struct Attribute{
     char* attributeName;
@@ -16,6 +17,8 @@ typedef struct Attribute{
 } Attribute;
 
 void addAttributeToXmlMarkup(File_information * fileInfo,struct XML_basic*  xmlMarkup);
+
+void addAttributeToXmlInstruction(File_information *fileInfo,struct XML_instruction *xmlParent);
 
 void freeAttribute(Attribute* attribute);
 
