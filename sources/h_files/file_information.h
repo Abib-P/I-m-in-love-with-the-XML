@@ -19,4 +19,6 @@ typedef struct File_information{
 
 File_information* initialiseFileInformation(char* fileName);
 
+void freeFileInformation(File_information* fileInfo);
+
 #endif //I_M_IN_LOVE_WITH_THE_XML_FILE_INFORMATION_H
