@@ -33,4 +33,8 @@ void readInstruction(File_information* fileInformation, XML_tree* xmlTree);
 
 void freeXml_tree(XML_tree *xmlTree);
 
+void freeXml_instruction(XML_instruction * xmlInstruction);
+
+void showXmlFile(XML_tree *xmlTree);
+
 #endif //I_M_IN_LOVE_WITH_THE_XML_XMLFILE_READ_H

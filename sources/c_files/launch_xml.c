@@ -20,9 +20,9 @@ int launchXml(char *xmlFileName){
         else{
             if(xmlFile != NULL) {
                 if (xmlFile->rootMarkup != NULL) {
-                    showXmlFile(xmlFile->rootMarkup, 0);
+                    showXmlFile(xmlFile);
                 }
-                free(xmlFile); //todo use the real free
+                freeXml_tree(xmlFile);
             }
         }
     } else{

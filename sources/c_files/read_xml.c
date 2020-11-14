@@ -157,6 +157,10 @@ XML_basic* createXmlBasic(File_information *fileInfo, XML_basic* xmlParent) {
     result->attributeSize = 0;
     result->attributeCapacity = 0;
 
+    result->comment = NULL;
+    result->commentSize = 0;
+    result->commentCapacity =0;
+
     char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
     while(actualCharacterRead != '>' && actualCharacterRead != '/'){
         rewindOnce(fileInfo);
@@ -255,7 +259,7 @@ void freeXml_basic(XML_basic *xmlMarkup) {
     }
 }
 
-void showXmlFile(XML_basic *xmlMarkup, int nbTab) {
+void showXmlMarkup(XML_basic *xmlMarkup, int nbTab) {
     for (int i = 0; i < nbTab; i++) {
         printf("\t");
     }
@@ -263,24 +267,37 @@ void showXmlFile(XML_basic *xmlMarkup, int nbTab) {
     for (int i = 0; i < xmlMarkup->attributeSize; i++) {
         printf(" %s=\"%s\"",xmlMarkup->attributeList[i]->attributeName,xmlMarkup->attributeList[i]->attributeValue);
     }
-    if(xmlMarkup->value == NULL && xmlMarkup->markupList == NULL)
+    if(xmlMarkup->value == NULL && xmlMarkup->markupList == NULL && xmlMarkup->comment == NULL) //nothing
     {
         printf("/>\n");
         return;
     }
-    if(xmlMarkup->markupList == NULL) {
+    if(xmlMarkup->value == NULL  && xmlMarkup->markupList == NULL &&xmlMarkup->comment != NULL ) { //comment only
+        printf("> <!--%s--> </%s>\n",xmlMarkup->comment,xmlMarkup->elementName);
+        return;
+    }
+    if(xmlMarkup->value != NULL  && xmlMarkup->markupList == NULL &&xmlMarkup->comment == NULL ) { //value only
         printf(">%s</%s>\n",xmlMarkup->value,xmlMarkup->elementName);
         return;
     }
     printf(">\n");
+
+    if(xmlMarkup->comment != NULL) {
+        for (int i = 0; i < nbTab + 1; i++) {
+            printf("\t");
+        }
+        printf("<!--%s-->\n",xmlMarkup->comment);
+    }
+
     if(xmlMarkup->value != NULL) {
-        for (int i = 0; i < nbTab+1; i++) {
+        for (int i = 0; i < nbTab + 1; i++) {
             printf("\t");
         }
         printf("%s\n",xmlMarkup->value);
     }
+
     for (int i = 0; i < xmlMarkup->markupSize; i++) {
-        showXmlFile(xmlMarkup->markupList[i],nbTab+1);
+        showXmlMarkup(xmlMarkup->markupList[i],nbTab+1);
     }
     for (int i = 0; i < nbTab; i++) {
         printf("\t");

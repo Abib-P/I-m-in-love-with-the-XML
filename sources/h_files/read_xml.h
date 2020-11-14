@@ -44,6 +44,6 @@ void addNewXmlMarkupToParent(XML_basic* xmlParent, XML_basic* xmlChild);
 
 void freeXml_basic(XML_basic *xmlMarkup);
 
-void showXmlFile(XML_basic *xmlMarkup, int nbTab);
+void showXmlMarkup(XML_basic *xmlMarkup, int nbTab);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READXML_H

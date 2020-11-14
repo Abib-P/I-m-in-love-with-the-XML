@@ -101,9 +101,9 @@ XML_tree *createXmlTree() {
     result->instructionCapacity = 0;
     result->instructionSize = 0;
 
-    //result->commentList = NULL;
-    //result->commentSize = 0;
-    //result->commentCapacity = 0;
+    result->comment = NULL;
+    result->commentSize = 0;
+    result->commentCapacity = 0;
 
     result->rootMarkup = NULL;
 
@@ -156,5 +156,56 @@ void readInstruction(File_information *fileInformation, XML_tree *xmlTree) {
         return;
     }
     xmlTree->instructionSize++;
+}
+
+void freeXml_tree(XML_tree *xmlTree) {
+    if (xmlTree->comment != NULL){
+        free(xmlTree->comment);
+    }
+    if (xmlTree->rootMarkup != NULL){
+        freeXml_basic(xmlTree->rootMarkup);
+    }
+    if (xmlTree->instructionList != NULL){
+        for (int i = 0; i < xmlTree->instructionSize; i++) {
+            freeXml_instruction(xmlTree->instructionList[i]);
+        }
+        free(xmlTree->instructionList);
+    }
+    free(xmlTree);
+}
+
+void freeXml_instruction(XML_instruction *xmlInstruction) {
+    if (xmlInstruction->elementName != NULL)
+    {
+        free(xmlInstruction->elementName);
+    }
+    if (xmlInstruction->attributeList != NULL)
+    {
+        for (int i = 0; i < xmlInstruction->attributeSize; i++) {
+            freeAttribute(xmlInstruction->attributeList[i]);
+        }
+        free(xmlInstruction->attributeList);
+    }
+    free(xmlInstruction);
+}
+
+void showXmlFile(XML_tree *xmlTree) {
+    if(xmlTree->comment != NULL)
+    {
+        printf("<!--%s-->\n",xmlTree->comment);
+    }
+    if(xmlTree->instructionList != NULL) {
+        for (int i = 0; i < xmlTree->instructionSize; ++i) {
+            printf("<?%s", xmlTree->instructionList[i]->elementName);
+            for (int j = 0; j < xmlTree->instructionList[i]->attributeSize; j++) {
+                printf(" %s=\"%s\"", xmlTree->instructionList[i]->attributeList[j]->attributeName, xmlTree->instructionList[i]->attributeList[j]->attributeValue);
+            }
+            printf("?>\n");
+        }
+    }
+    if(xmlTree->rootMarkup != NULL)
+    {
+        showXmlMarkup(xmlTree->rootMarkup,0);
+    }
 }
 
