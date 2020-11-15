@@ -1,5 +1,4 @@
-#include "../h_files/read_dtd.h"
-
+#include "../h_files/launch_dtd.h"
 
 int main() {
     char* fileName = "../resources/myDtd.dtd";
