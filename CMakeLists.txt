@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.17)
 project(I_m_in_love_with_the_XML C)
 
 set(CMAKE_C_STANDARD 11)
@@ -20,5 +20,32 @@ if (UNIX)
 endif (UNIX)
 
 # Compile
-add_executable(I_m_in_love_with_the_XML sources/c_files/main.c sources/c_files/read_xml.c sources/h_files/read_xml.h sources/c_files/read_dtd.c sources/h_files/read_dtd.h sources/c_files/file_useful.c sources/h_files/file_useful.h sources/c_files/error_gestion.c sources/h_files/error_gestion.h sources/c_files/file_information.c sources/h_files/file_information.h sources/c_files/char_useful.c sources/h_files/char_useful.h sources/c_files/read_attribute.c sources/h_files/read_attribute.h sources/h_files/includes.h sources/c_files/launch_xml.c sources/h_files/launch_xml.h sources/c_files/gtk_functions.c sources/h_files/gtk_functions.h sources/c_files/xmlfile_read.c sources/h_files/xmlfile_read.h sources/c_files/read_comment.c sources/h_files/read_comment.h)
+add_executable(I_m_in_love_with_the_XML
+        sources/c_files/main.c
+        sources/c_files/read_xml.c
+        sources/h_files/read_xml.h
+        sources/c_files/read_dtd.c
+        sources/h_files/read_dtd.h
+        sources/c_files/file_useful.c
+        sources/h_files/file_useful.h
+        sources/c_files/error_gestion.c
+        sources/h_files/error_gestion.h
+        sources/c_files/file_information.c
+        sources/h_files/file_information.h
+        sources/c_files/char_useful.c
+        sources/h_files/char_useful.h
+        sources/c_files/read_attribute.c
+        sources/h_files/read_attribute.h
+        sources/h_files/includes.h
+        sources/c_files/launch_xml.c
+        sources/h_files/launch_xml.h
+        sources/c_files/gtk_functions.c
+        sources/h_files/gtk_functions.h
+        sources/c_files/xmlfile_read.c
+        sources/h_files/xmlfile_read.h
+        sources/c_files/read_comment.c
+        sources/h_files/read_comment.h
+        sources/c_files/launch_dtd.c
+        sources/h_files/launch_dtd.h)
+
 target_link_libraries(I_m_in_love_with_the_XML ${GTK_LIBRARIES})

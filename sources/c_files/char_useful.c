@@ -202,7 +202,7 @@ void addCharacterToCommentOutside(struct XML_tree *xmlTree, char characterToPut)
     xmlTree->comment[xmlTree->commentSize] = 0;
 }
 
-void addCharacterToCommentInside(struct XML_basic *xmlParent, char characterToPut) {
+void addCharacterToCommentInside(XML_basic *xmlParent, char characterToPut) {
     if(xmlParent->comment == NULL)
     {
         xmlParent->commentCapacity = 20;
