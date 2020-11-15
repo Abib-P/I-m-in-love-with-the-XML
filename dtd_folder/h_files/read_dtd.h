@@ -14,33 +14,55 @@
 
 
 /* myDTD ########################################################## */
-
-typedef struct data
+typedef struct attribute
 {
-    char* pcData;
-    char** elements;  // child(s) + option(s)
-    int elements_size;
-    int elements_capacity;
-} data;
+    char* attribute_name;
+    char* attribute_type;
+    char* attribute_value;
+} attribute;
 
 typedef struct element
 {
-    char* type;  // !DOCTYPE (root, parent), !ELEMENT (child), !ATTLIST (attribute)
-    char* name;
-    data parameters;
+    char** elements;
+    unsigned int elements_size;
+    unsigned int elements_capacity;
 } element;
+
+typedef struct parameter
+{
+    char* parameter_type;
+
+    char* category;  // corresponding to a #PCDATA
+    element element;  // relative to !ELEMENT
+    attribute attribute;  // relative to !ATTLIST
+} parameter;
+
+typedef struct markup
+{
+    char* markup_type;  // !DOCTYPE (root, parent), !ELEMENT (child), !ATTLIST (attribute)
+    char* markup_name;
+    parameter markup_parameters;
+} markup;
+
+typedef struct markupContainer {
+    markup* markupArray;
+    unsigned int size;
+    unsigned int capacity;
+} markupContainer;
 
 
 /* PROTOTYPES ########################################################## */
 
-void initMyElem(element* myElem, int capacity);
-element* find_dtd_content(File_information*, int*);
-void find_dtd_elements(File_information*, int, element*, int*);
-void find_dtd_element(File_information*, int, element*, int);
-void retrieve_dtd_info(char*, element*, int);
-void get_dtd_type(char* str, int* i, element*, int);
-void get_dtd_name(char* str, int* i, element*, int);
-void get_dtd_param(char* str, int* i, element*, int);
-
+markupContainer* initMyElem();
+markupContainer* find_dtd_content(File_information*);
+void find_dtd_markups(File_information*, markupContainer*);
+void find_dtd_markup(File_information*, markupContainer*);
+void retrieve_dtd_info(char*, markupContainer*);
+void get_dtd_type(char* str, int* i, markupContainer*);
+void get_dtd_name(char* str, int* i, markupContainer*);
+void find_typeOf_param(char* str, int* i, markupContainer*);
+void get_dtd_param_category(char* str, int* pos, markupContainer* markupArray);
+void get_dtd_param_element(char* str, int* pos, markupContainer* markupArray);
+void get_dtd_param_attribute(char* str, int* pos, markupContainer* markupArray);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H

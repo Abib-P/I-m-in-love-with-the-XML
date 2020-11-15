@@ -89,9 +89,6 @@
 		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/c_files/read_dtd.c">
 			<Option target="I-m-in-love-with-the-XML"/>
 		</Unit>
-		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/dtd_folder/dtd_files/myDtd.dtd">
-			<Option target="I-m-in-love-with-the-XML"/>
-		</Unit>
 		<Unit filename="H:/Projects/C/I-m-in-love-with-the-XML/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -4,138 +4,304 @@
 
 #include "../h_files/read_dtd.h"
 
-// todo
-void initMyElem(element* myElem, int capacity) {
-    for (int i = 0; i < capacity; i += 1) {
-        myElem[i].type = calloc(20, sizeof(char));
-        myElem[i].name = calloc(20, sizeof(char));
-        myElem[i].parameters.elements_size = 0;
-        myElem[i].parameters.elements_capacity = 10;
-        myElem[i].parameters.elements = calloc(myElem[i].parameters.elements_capacity, sizeof(char));
-        myElem[i].parameters.pcData = calloc(20, sizeof(char));
-    }
-}
+/**
+ * This method allow to create an array containing all information about a DTD
+ * the different markups :
+ *     - type (!DOCTYPE, !ELEMENT, !ATTLIST)
+ *     - name
+ *     - parameters (category, attribute, element)
+ * @param fileInfo
+ * @return markupContainer*
+ */
+markupContainer* find_dtd_content(File_information* fileInfo) {
 
-// retrieve content of dtd -> [ _our_content_ ]
-element* find_dtd_content(File_information* fileInfo, int* size) {
-    int size_myElem = *size;
-    int capacity = 10;
-    element* result = calloc(capacity, sizeof(element));
-    initMyElem(result, capacity);
+    // init, malloc
+    markupContainer* result = malloc(sizeof(markupContainer));
+    result->size = 0;
+    result->capacity = 10;
+    result->markupArray = malloc(sizeof(markup) * result->capacity);
+    char c;
 
-    for (char c = getFirstCharacterAfterSpace(fileInfo); c != EOF; c = getNextCharacterInFile(fileInfo)) {
-        if (c == '[') {
-            find_dtd_elements(fileInfo, ftell(fileInfo->fp), result, &size_myElem);
-            break;
+    // chars expected at the beginning of DTD : '<'
+    if ((c = getFirstCharacterAfterSpace(fileInfo)) == '<') {
+        // separator '!' => markup_type
+        if ((c = getNextCharacterInFile(fileInfo)) == '!') {
+
+            // GET the !DOCTYPE markup of DTD
+            // RETRIEVE markup_type
+            result->markupArray[result->size].markup_type = malloc(sizeof(char) * 20);
+            int i = 0;
+            // read up to the markup_name indicate by the separator ' '
+            for (; c != ' '; c = getNextCharacterInFile(fileInfo), i += 1) {
+                result->markupArray[result->size].markup_type[i] = c;
+            }
+            result->markupArray[result->size].markup_type[i] = '\0';
+
+            // RETRIEVE the markup_name
+            result->markupArray[result->size].markup_name = malloc(sizeof(char) * 20);
+            int j = 0;
+            // read up to the separator '[' => body of the DTD
+            for (; c != '['; j += 1, c = getNextCharacterInFile(fileInfo)) {
+                result->markupArray[result->size].markup_name[j] = c;
+            }
+            result->markupArray[result->size].markup_name[j] = '\0';
+
+            // next markup
+            result->size += 1;
+
+            // GET the other markups of DTD
+            if (c == '[') {
+                find_dtd_markups(fileInfo, result);
+            }
         }
     }
 
-    *size =size_myElem;
     return result;
 }
 
-// retrieve content of dtd_element -> [ < _our_content_ /> ]
-void find_dtd_elements(File_information* fileInfo, int pos, element* myElem, int* size_myElem) {
-    fseek(fileInfo->fp, pos, SEEK_SET);
-
-    for (char c = getFirstCharacterAfterSpace(fileInfo); c != ']'; c = getNextCharacterInFile(fileInfo)) {
+/**
+ * This method allow to read the body of DTD, and to find each markup
+ * '[' : start of DTD_body
+ * ']' : end of DTD_body
+ * @param fileInfo
+ * @param markupArray
+ */
+void find_dtd_markups(File_information* fileInfo, markupContainer* container) {
+    // read the file up to the END OF DTD => ']'
+    for (char c = getNextCharacterInFile(fileInfo); c != ']'; c = getNextCharacterInFile(fileInfo)) {
+        // foreach markups do that ...
         if (c == '<') {
-            find_dtd_element(fileInfo, ftell(fileInfo->fp), myElem, *size_myElem);
-            *size_myElem += 1;
+            find_dtd_markup(fileInfo, container);
+            container->size += 1;  // next markup
         }
     }
 }
 
-// stock our dtd_element to manipulate it
-void find_dtd_element(File_information* fileInfo, int pos, element* myElem, int size_myElem) {
-    fseek(fileInfo->fp, pos, SEEK_SET);
-    char* str = calloc(255, sizeof(char));
-
+/**
+ * This method allow to return a string containing a markup content
+ * '<' : start of markup
+ * '>' : end of markup
+ * @param fileInfo
+ * @param pos
+ * @param markupArray
+ */
+void find_dtd_markup(File_information* fileInfo, markupContainer* container) {
+    char* str = malloc(sizeof(char) * 255);
     int i = 0;
-    for (char c = getFirstCharacterAfterSpace(fileInfo); c != '>'; c = getNextCharacterInFile(fileInfo), i += 1) {
+    for (char c = getNextCharacterInFile(fileInfo); c != '>'; c = getNextCharacterInFile(fileInfo), i += 1) {
         str[i] = c;
     }
     str[i] = '\0';
-
-    retrieve_dtd_info(str, myElem, size_myElem);
+    retrieve_dtd_info(str, container);
     free(str);
 }
 
-// manipulates our dtd_element -> separates the type/name/param
-void retrieve_dtd_info(char* str, element* myElem, int size_myElem) {
-    int i = 0;
-    for (; i < strlen((str)); i += 1) {
+/**
+ * This method allow to retrieve the type, name, param of markup
+ * @param fileInfo
+ * @param str
+ * @param markupArray
+ */
+void retrieve_dtd_info(char* str, markupContainer* container) {
+    // read str (markup_content)
+    for (int i = 0; i < strlen(str); i += 1) {
+
+        // finds indicator of a markup_type
         if (str[i] == '!') {
-            get_dtd_type(str, &i, myElem, size_myElem);
+            // RETRIEVE the markup_type
+            get_dtd_type(str, &i, container);
 
-            if (str[i] == ' ') {
-                i += 1;
-                get_dtd_name(str, &i, myElem, size_myElem);
+            // RETRIEVE the markup_name
+            i += 1;
+            get_dtd_name(str, &i, container);
 
+            // markup_type == !ELEMENT
+            if (strcmp(container->markupArray[container->size].markup_type, "!ELEMENT") == 0) {
                 if (str[i] == '(') {
                     i += 1;
-                    get_dtd_param(str, &i, myElem, size_myElem);
+                    find_typeOf_param(str, &i, container);
                 }
+            }  // markup_type == !ATTLIST
+            else {
+//                if (str[i] == ' ') {
+//                    i += 1;
+                    get_dtd_param_attribute(str, &i, container);
+//                }
+            }
+            break;
+        }
+    }
+}
+
+/**
+ * This method allow to retrieve the type of markup
+ * @param str
+ * @param pos
+ * @param container
+ */
+void get_dtd_type(char* str, int* pos, markupContainer* container) {
+    // init, malloc
+    container->markupArray[container->size].markup_type = malloc(sizeof(char) * 20);
+
+    // RETRIEVE markup_type
+    for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
+        container->markupArray[container->size].markup_type[i] = str[*pos];
+        if (str[*pos+1] == ' ') {
+            container->markupArray[container->size].markup_type[i+1] = '\0';
+        }
+    }
+}
+
+/**
+ * This method allow to retrieve the name of markup
+ * @param str
+ * @param pos
+ * @param container
+ */
+void get_dtd_name(char* str, int* pos, markupContainer* container) {
+    // init, malloc
+    container->markupArray[container->size].markup_name = malloc(sizeof(char) * 20);
+
+    // markup_type == !ELEMENT
+    if (strcmp(container->markupArray[container->size].markup_type, "!ELEMENT") == 0) {
+        // read until '(' + RETRIEVE markup_name
+        for (int j = 0; str[*pos] != '('; j += 1, *pos += 1) {
+            if (str[*pos+1] == '(' || str[*pos] == ' ') {
+                container->markupArray[container->size].markup_name[j] = '\0';
+            }
+            else {
+                container->markupArray[container->size].markup_name[j] = str[*pos];
             }
         }
     }
-}
-
-// stock the type into an element
-void get_dtd_type(char* str, int* pos, element* myElem, int size_myElem) {
-    int i = *pos;
-    for (int j = 0; str[i] != ' '; j += 1, i += 1) {
-        myElem[size_myElem].type[j] = str[i];
+    else {  // markup_type == !ATTLIST
+        // read until ' ' + RETRIEVE markup_name
+        for (int j = 0; str[*pos] != ' '; j += 1, *pos += 1) {
+            container->markupArray[container->size].markup_name[j] = str[*pos];
+            if (str[*pos+1] == ' ') {
+                container->markupArray[container->size].markup_name[j+1] = '\0';
+            }
+        }
+        *pos += 1;
     }
-    *pos = i;
 }
 
-// stock the name into an element
-void get_dtd_name(char* str, int* pos, element* myElem, int size_myElem) {
-    int i = *pos;
-    for (int j = 0; str[i] != '('; j += 1, i += 1) {
-        myElem[size_myElem].name[j] = str[i];
-    }
-    *pos = i;
-}
-
-// stock params into an element
-void get_dtd_param(char* str, int* pos, element* myElem, int size_myElem) {
-    int i = *pos;
-
+/**
+ * This method allow to determinate if markup_parameters is a category or element
+ * @param str
+ * @param pos
+ * @param container
+ */
+void find_typeOf_param(char* str, int* pos, markupContainer* container) {
     // parameter = #PCDATA
     if (str[*pos] == '#') {
-        for (int j = 0; str[i] != ')'; j += 1, i += 1) {
-            myElem[size_myElem].parameters.pcData[j] = str[i];
-        }
+        get_dtd_param_category(str, pos, container);
     }
     // parameter(s) = child(s)
     else {
-        strcpy(myElem[size_myElem].parameters.pcData, "\0");
-        myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size] = malloc(sizeof(char) * 20);
-        for (int j = 0; str[i] != ')'; j += 1, i += 1) {
+        get_dtd_param_element(str, pos, container);
+    }
+}
 
-            // another parameter
-            if (str[i] == ',') {
-                myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size][j] = '\0';
-                j = 0;
-                myElem[size_myElem].parameters.elements_size += 1;
-                myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size] = malloc(sizeof(char) * 20);
-            }
-            // end of parameters
-            else if (str[i+1] == ')') {
-                myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size][j+1] = '\0';
-            }
+/**
+ * This method allow to retrieve the category value (context: parameter)
+ * @param str
+ * @param pos
+ * @param container
+ */
+void get_dtd_param_category(char* str, int* pos, markupContainer* container) {
+    // init, malloc
+    container->markupArray[container->size].markup_parameters.category = malloc(sizeof(char) * 20);
+    // SET parameter_type at "category"
+    container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 10);
+    strcpy(container->markupArray[container->size].markup_parameters.parameter_type, "category");
 
-            // stock char
-            if (str[i] == ',' || str[i] == ' ') {
-                j -= 1;
-            }
-            else {
-                myElem[size_myElem].parameters.elements[myElem[size_myElem].parameters.elements_size][j] = str[i];
-            }
+    for (int i = 0; str[*pos] != ')'; i += 1, *pos += 1) {
+        container->markupArray[container->size].markup_parameters.category[i] = str[*pos];
+        if (str[*pos+1] == ')') {
+            container->markupArray[container->size].markup_parameters.category[i+1] = '\0';
         }
     }
+}
 
-    *pos = i;
+/**
+ * This method allow to retrieve the element data (context: parameter)
+ * @param str
+ * @param pos
+ * @param container
+ */
+void get_dtd_param_element(char* str, int* pos, markupContainer* container) {
+    // init, malloc
+    container->markupArray[container->size].markup_parameters.element.elements_size = 0;
+    container->markupArray[container->size].markup_parameters.element.elements_capacity = 10;
+    container->markupArray[container->size].markup_parameters.element.elements = malloc(sizeof(char*) * container->markupArray[container->size].markup_parameters.element.elements_capacity);
+    container->markupArray[container->size].markup_parameters.element.elements[container->markupArray[container->size].markup_parameters.element.elements_size] = malloc(sizeof(char) * 20);
+    // SET parameter_type at "element"
+    container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 10);
+    strcpy(container->markupArray[container->size].markup_parameters.parameter_type, "element");
+
+    for (int j = 0; str[*pos] != ')'; j += 1, *pos += 1) {
+
+        // find an other parameter, indicate by ','
+        if (str[*pos] == ',') {
+            // init, malloc once again to prepare a new instance
+            container->markupArray[container->size].markup_parameters.element.elements[container->markupArray[container->size].markup_parameters.element.elements_size][j] = '\0';
+            j = 0;
+            container->markupArray[container->size].markup_parameters.element.elements_size += 1;
+            container->markupArray[container->size].markup_parameters.element.elements[container->markupArray[container->size].markup_parameters.element.elements_size] = malloc(sizeof(char) * 20);
+        }
+        else if (str[*pos+1] == ')') {  // end of markup_parameters
+            container->markupArray[container->size].markup_parameters.element.elements[container->markupArray[container->size].markup_parameters.element.elements_size][j+1] = '\0';
+        }
+
+        // doesn't want to stock separators
+        if (str[*pos] == ',' || str[*pos] == ' ') {
+            j -= 1;
+        }
+        else {
+            container->markupArray[container->size].markup_parameters.element.elements[container->markupArray[container->size].markup_parameters.element.elements_size][j] = str[*pos];
+        }
+    }
+}
+
+/**
+ * THis method allow to retrieve the attribute data (context: parameter)
+ * @param str
+ * @param pos
+ * @param container
+ */
+void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
+    // init, malloc
+    container->markupArray[container->size].markup_parameters.attribute.attribute_name = malloc(sizeof(char) * 20);
+    container->markupArray[container->size].markup_parameters.attribute.attribute_type = malloc(sizeof(char) * 20);
+    container->markupArray[container->size].markup_parameters.attribute.attribute_value = malloc(sizeof(char) * 40);
+    // SET parameter_type at "attribute"
+    container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 20);
+    strcpy(container->markupArray[container->size].markup_parameters.parameter_type, "attribute");
+
+    // RETRIEVE attribute_name
+    for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
+        container->markupArray[container->size].markup_parameters.attribute.attribute_name[i] = str[*pos];
+        if (str[*pos+1] == ' ') {
+            container->markupArray[container->size].markup_parameters.attribute.attribute_name[i+1] ='\0';
+        }
+    }
+    *pos += 1;
+
+    // RETRIEVE attribute_name
+    for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
+        container->markupArray[container->size].markup_parameters.attribute.attribute_type[i] = str[*pos];
+        if (str[*pos+1] == ' ') {
+            container->markupArray[container->size].markup_parameters.attribute.attribute_type[i+1] ='\0';
+        }
+    }
+    *pos += 1;
+
+    // RETRIEVE attribute_value
+    for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
+        container->markupArray[container->size].markup_parameters.attribute.attribute_value[i] = str[*pos];
+        if (str[*pos+1] == '\0') {
+            container->markupArray[container->size].markup_parameters.attribute.attribute_value[i+1] ='\0';
+        }
+    }
 }

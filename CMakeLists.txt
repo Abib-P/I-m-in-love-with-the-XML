@@ -9,5 +9,4 @@ add_executable(I-m-in-love-with-the-XML
         dtd_folder/c_files/error_gestion.c
         dtd_folder/c_files/file_information.c
         dtd_folder/c_files/file_useful.c
-        dtd_folder/dtd_files/myDTD.dtd
     )

@@ -4,29 +4,32 @@
 
 
 int main() {
+
     char* fileName = "H:\\Projects\\C\\I-m-in-love-with-the-XML\\dtd_folder\\dtd_files\\myDTD.dtd";
     File_information* dtdFileInfo = initialiseFileInformation(fileName);
-    int size_elementList = 0;
-    element* elementList = find_dtd_content(dtdFileInfo, &size_elementList);
+    markupContainer* markupArray = find_dtd_content(dtdFileInfo);
 
-    printf("\nDisplay elementList :\n");
-    for (int i = 0; i < size_elementList; i += 1) {
+    printf("\nDisplay markupArray :\n");
+    for (int i = 0; i < markupArray->size; i += 1) {
         printf("\n index : %d ", i);
-        printf("| type : %s ", elementList[i].type);
-        printf("| name : %s ", elementList[i].name);
+        printf("| type : %s ", markupArray->markupArray[i].markup_type);
+        printf("| name : %s ", markupArray->markupArray[i].markup_name);
 
-        // #PCDATA not exist, display element_child(s)
-        if (strlen(elementList[i].parameters.pcData) == 0) {
-            printf("| param(s) : ");
-            for (int j = 0; j <= elementList[i].parameters.elements_size; j += 1) {
-                printf("%s ", elementList[i].parameters.elements[j]);
+        if (markupArray->markupArray[i].markup_parameters.parameter_type != NULL) {
+            if (strcmp(markupArray->markupArray[i].markup_parameters.parameter_type, "category") == 0) {
+                printf("| param : %s", markupArray->markupArray[i].markup_parameters.category);
+            } else if (strcmp(markupArray->markupArray[i].markup_parameters.parameter_type, "element") == 0) {
+                printf("| param : ");
+                for (int j = 0; j <= markupArray->markupArray[i].markup_parameters.element.elements_size; j += 1) {
+                    printf("%s ", markupArray->markupArray[i].markup_parameters.element.elements[j]);
+                }
+            } else {
+                printf("| param : %s, ", markupArray->markupArray[i].markup_parameters.attribute.attribute_name);
+                printf("%s, ", markupArray->markupArray[i].markup_parameters.attribute.attribute_type);
+                printf("%s", markupArray->markupArray[i].markup_parameters.attribute.attribute_value);
             }
         }
-        // // #PCDATA exist
-        else {
-            printf("| param : ");
-            printf("%s ", elementList[i].parameters.pcData);
-        }
     }
+
     return 0;
 }
