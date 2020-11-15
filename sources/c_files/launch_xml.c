@@ -7,19 +7,23 @@
 int launchXml(char *xmlFileName){
 
     File_information* xmlFileInfo = initialiseFileInformation(xmlFileName);
-    XML_basic* xmlFile = NULL;
+    XML_tree * xmlFile = NULL;
 
     if(xmlFileInfo != NULL) //no error during opening file
     {
         xmlFile = readXml(xmlFileInfo);
 
-        if (xmlFile != NULL){
-            showXmlFile(xmlFile,0);
-        }
-        free(xmlFile);
         if(xmlFileInfo->error != NULL)
         {
             showError(xmlFileInfo->error);
+        }
+        else{
+            if(xmlFile != NULL) {
+                if (xmlFile->rootMarkup != NULL) {
+                    showXmlFile(xmlFile);
+                }
+                freeXml_tree(xmlFile);
+            }
         }
     } else{
         return EXIT_FAILURE;

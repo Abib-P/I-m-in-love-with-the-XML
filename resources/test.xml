@@ -1,5 +1,9 @@
+<?TeamAlpha member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
+<!--comment 1-->
+<?TeamAlpha2 member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
+<!--comment 2-->
 <classrooms name="Sananes-san" d="D" odd="jj la girap">
-	<classroom1    >  AL (is the best)     </classroom1               >
+	<classroom1    >  AL (is t<!--commqbscdhgqsvhdvqshjvdhjqsvhjdsqhjdbhjqsjdbqsjhdbqshjbdhjqsbent wesh-->he best)     </classroom1               >
     <classroom2 mlg="flantier">IABD	</classroom2>
     <classroom3>        MOC</classroom3>
     <classroom4>IBC </classroom4>
