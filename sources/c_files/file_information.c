@@ -9,10 +9,11 @@ File_information *initialiseFileInformation(char *fileName) {
     File_information* result = malloc(sizeof(File_information));
     result->fp = fopen(fileName,"r");
 
-    if(result->fp == NULL) //error when fopen_s()
+    if(result->fp == NULL)
     {
         fprintf(stderr, "cannot open file '%s'\n",fileName);
-        fclose(result->fp);
+        if (result != NULL)
+            free(result);
         return NULL;
     }
 
@@ -23,4 +24,12 @@ File_information *initialiseFileInformation(char *fileName) {
     result->error = NULL;
 
     return result;
+}
+
+void freeFileInformation(File_information *fileInfo) {
+    if (fileInfo->fp != NULL)
+    {
+        fclose(fileInfo->fp);
+    }
+    free(fileInfo);
 }

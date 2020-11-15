@@ -23,6 +23,7 @@ int launchXml(char *xmlFileName){
                     showXmlFile(xmlFile);
                 }
                 freeXml_tree(xmlFile);
+                freeFileInformation(xmlFileInfo);
             }
         }
     } else{

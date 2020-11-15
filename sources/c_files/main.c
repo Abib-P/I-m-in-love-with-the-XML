@@ -4,7 +4,6 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 //todo free actual malloc when returning an error (to not lose the opportunity)
-//todo the function that free file_information (and close the document)
 
 int main(int argc, char **argv) {
 #ifdef __unix__

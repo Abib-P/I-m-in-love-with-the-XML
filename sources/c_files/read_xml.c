@@ -196,6 +196,10 @@ XML_basic *createRootXmlBasic(File_information *fileInfo) {
     result->attributeSize = 0;
     result->attributeCapacity = 0;
 
+    result->comment = NULL;
+    result->commentSize = 0;
+    result->commentCapacity =0;
+
     char actualCharacterRead = getFirstCharacterAfterSpace(fileInfo);
     while(actualCharacterRead != '>' && actualCharacterRead != '/'){
         rewindOnce(fileInfo);
@@ -254,6 +258,10 @@ void freeXml_basic(XML_basic *xmlMarkup) {
                 freeAttribute(xmlMarkup->attributeList[i]);
             }
             free(xmlMarkup->attributeList);
+        }
+        if(xmlMarkup->comment != NULL)
+        {
+            free(xmlMarkup->comment);
         }
         free(xmlMarkup);
     }
