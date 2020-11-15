@@ -1,3 +1,0 @@
-H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/CMakeFiles/I-m-in-love-with-the-XML.dir
-H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/CMakeFiles/edit_cache.dir
-H:/Projects/C/I-m-in-love-with-the-XML/cmake-build-debug/CMakeFiles/rebuild_cache.dir
