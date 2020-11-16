@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(I_m_in_love_with_the_XML C)
 
 set(CMAKE_C_STANDARD 11)
