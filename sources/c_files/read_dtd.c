@@ -313,7 +313,7 @@ void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
 
     getNextCharAfterSpace(str, pos);
 
-    // RETRIEVE attribute_value
+    // RETRIEVE attribute_value 
     for (int i = 0; str[*pos] != '\0'; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_value[i] = str[*pos];
 
