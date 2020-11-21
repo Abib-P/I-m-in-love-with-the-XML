@@ -24,4 +24,6 @@ void addCharacterToCommentInside(struct XML_basic* xmlParent, char characterToPu
 
 void removeFinalSpacesOfString(char* string);
 
+char lastCharacterOfString(char* string);
+
 #endif //I_M_IN_LOVE_WITH_THE_XML_CHAR_USEFUL_H

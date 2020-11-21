@@ -46,6 +46,10 @@ add_executable(I_m_in_love_with_the_XML
         sources/c_files/read_comment.c
         sources/h_files/read_comment.h
         sources/c_files/launch_dtd.c
-        sources/h_files/launch_dtd.h)
+        sources/h_files/launch_dtd.h
+        sources/c_files/xml_validation.c
+        sources/h_files/xml_validation.h
+        sources/c_files/test.c
+        sources/h_files/test.h)
 
 target_link_libraries(I_m_in_love_with_the_XML ${GTK_LIBRARIES})

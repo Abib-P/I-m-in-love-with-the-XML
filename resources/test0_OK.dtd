@@ -1,0 +1,4 @@
+<!DOCTYPE classrooms [
+        <!ELEMENT classrooms (classroom+)>
+        <!ELEMENT classroom (#PCDATA)>
+        ]>

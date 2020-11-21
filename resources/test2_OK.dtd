@@ -1,0 +1,9 @@
+<!DOCTYPE schools [
+        <!ELEMENT schools (school+)>
+        <!ELEMENT school (classrooms)>
+        <!ELEMENT classrooms (classroom+)>
+        <!ELEMENT classroom (#PCDATA)>
+
+        <!ATTLIST school name CDATA #IMPLIED>
+        <!ATTLIST classroom students CDATA #IMPLIED>
+        ]>

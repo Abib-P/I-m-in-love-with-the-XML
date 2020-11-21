@@ -7,7 +7,10 @@
 
 #include "file_information.h"
 #include "read_dtd.h"
+#include "char_useful.h"
 
-int launchDtd(char *xmlFileName);
+markupContainer* launchDtd(char *xmlFileName);
+
+void showDtd(markupContainer* markupArray);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_LAUNCH_DTD_H

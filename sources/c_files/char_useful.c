@@ -229,3 +229,11 @@ void addCharacterToCommentInside(XML_basic *xmlParent, char characterToPut) {
     xmlParent->commentSize++;
     xmlParent->comment[xmlParent->commentSize] = 0;
 }
+
+char lastCharacterOfString(char *string) {
+    int indexChar = 0;
+    while(string[indexChar+1] != 0){
+        indexChar++;
+    }
+    return string[indexChar];
+}

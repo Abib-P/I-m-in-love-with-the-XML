@@ -1,0 +1,5 @@
+<!DOCTYPE classrooms [
+        <!ELEMENT classrooms (classroom+)>
+        <!ELEMENT classroom (#PCDATA)>
+        <!ATTLIST classroom students (25|40|30|20) "40">
+        ]>

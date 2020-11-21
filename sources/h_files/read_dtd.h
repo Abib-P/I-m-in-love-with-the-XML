@@ -68,4 +68,6 @@ void get_dtd_param_element(char* str, int* pos, markupContainer* markupArray);
 
 void get_dtd_param_attribute(char* str, int* pos, markupContainer* markupArray);
 
+void getNextCharAfterSpace(char* str, int* pos) ;
+
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H

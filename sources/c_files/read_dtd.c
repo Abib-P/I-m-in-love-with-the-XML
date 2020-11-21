@@ -76,6 +76,10 @@ void find_dtd_markups(File_information* fileInfo, markupContainer* container) {
         if (c == '<') {
             find_dtd_markup(fileInfo, container);
             container->size += 1;  // next markup
+            if (container->size == container->capacity) {
+                container->capacity *= 2;
+                container->markupArray = realloc(container->markupArray,sizeof(struct markup)*container->capacity);
+            }
         }
     }
 }
@@ -126,10 +130,7 @@ void retrieve_dtd_info(char* str, markupContainer* container) {
                 }
             }  // markup_type == !ATTLIST
             else {
-//                if (str[i] == ' ') {
-//                    i += 1;
                     get_dtd_param_attribute(str, &i, container);
-//                }
             }
             break;
         }
@@ -282,6 +283,8 @@ void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
     container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 20);
     strcpy(container->markupArray[container->size].markup_parameters.parameter_type, "attribute");
 
+    getNextCharAfterSpace(str, pos);
+
     // RETRIEVE attribute_name
     for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_name[i] = str[*pos];
@@ -289,22 +292,51 @@ void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
             container->markupArray[container->size].markup_parameters.attribute.attribute_name[i+1] ='\0';
         }
     }
-    *pos += 1;
 
-    // RETRIEVE attribute_name
+    getNextCharAfterSpace(str, pos);
+
+    // RETRIEVE attribute_type
     for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_type[i] = str[*pos];
         if (str[*pos+1] == ' ') {
             container->markupArray[container->size].markup_parameters.attribute.attribute_type[i+1] ='\0';
         }
     }
-    *pos += 1;
+
+    getNextCharAfterSpace(str, pos);
 
     // RETRIEVE attribute_value
     for (int i = 0; str[*pos] != '\0'; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_value[i] = str[*pos];
-        if (str[*pos+1] == '\0') {
+
+        if (str[*pos+1] == '\0' || str[*pos+1] == ' ') {
             container->markupArray[container->size].markup_parameters.attribute.attribute_value[i+1] ='\0';
+        }
+
+        if (str[*pos] == ' ') {
+            getNextCharAfterSpace(str, pos);
+            if (str[*pos] != '\0') {
+                container->size += 1;
+                if (container->size == container->capacity) {
+                    container->capacity *= 2;
+                    container->markupArray = realloc(container->markupArray,sizeof(struct markup)*container->capacity);
+                }
+                container->markupArray[container->size].markup_type = malloc(sizeof(char) * 20);
+                strcpy(container->markupArray[container->size].markup_type, container->markupArray[container->size-1].markup_type);
+                container->markupArray[container->size].markup_name = malloc(sizeof(char) * 20);
+                strcpy(container->markupArray[container->size].markup_name, container->markupArray[container->size-1].markup_name);
+                get_dtd_param_attribute(str, pos, container);
+                break;
+            }
+        }
+    }
+}
+
+// get the next character
+void getNextCharAfterSpace(char* str, int* pos) {
+    if (str[*pos] == ' ' || str[*pos] == '\n') {
+        while (str[*pos] == ' ' || str[*pos] == '\n') {
+            *pos += 1;
         }
     }
 }

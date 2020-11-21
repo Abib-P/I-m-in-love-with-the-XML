@@ -4,7 +4,7 @@
 
 #include "../h_files/launch_xml.h"
 
-int launchXml(char *xmlFileName){
+XML_tree * launchXml(char *xmlFileName){
 
     File_information* xmlFileInfo = initialiseFileInformation(xmlFileName);
     XML_tree * xmlFile = NULL;
@@ -16,19 +16,17 @@ int launchXml(char *xmlFileName){
         if(xmlFileInfo->error != NULL)
         {
             showError(xmlFileInfo->error);
+            return NULL;
         }
         else{
             if(xmlFile != NULL) {
-                if (xmlFile->rootMarkup != NULL) {
-                    showXmlFile(xmlFile);
-                }
-                freeXml_tree(xmlFile);
+                //freeXml_tree(xmlFile); todo implement free this free when we need it
                 freeFileInformation(xmlFileInfo);
             }
         }
     } else{
-        return EXIT_FAILURE;
+        return NULL;
     }
 
-    return EXIT_SUCCESS;
+    return xmlFile;
 }

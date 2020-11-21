@@ -8,6 +8,6 @@
 #include "file_information.h"
 #include "xmlfile_read.h"
 
-int launchXml(char *xmlFileName);
+XML_tree * launchXml(char *xmlFileName);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_LAUNCH_XML_H

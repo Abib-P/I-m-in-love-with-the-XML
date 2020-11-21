@@ -7,9 +7,7 @@
 void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
     char actualCharRead = getFirstCharacterAfterSpace(fileInfo);
     while(1) {
-        while (actualCharRead != '<' && actualCharRead != '>' && actualCharRead != EOF) {
-            addCharacterToStringValue(xmlParent, actualCharRead);
-            actualCharRead = getNextCharacterInFile(fileInfo);
+        while (actualCharRead != '>' && actualCharRead != EOF) {
             if(actualCharRead == '<')
             {
                 if(getNextCharacterInFile(fileInfo) == '!')
@@ -46,9 +44,13 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                 else
                 {
                     rewindOnce(fileInfo);
+                    break;
                 }
             }
-
+            else{
+                addCharacterToStringValue(xmlParent, actualCharRead);
+                actualCharRead = getNextCharacterInFile(fileInfo);
+            }
         }
         if (actualCharRead == '>' || actualCharRead == EOF) {
             char buffer_where[1000]; //TODO taille arbitraire
