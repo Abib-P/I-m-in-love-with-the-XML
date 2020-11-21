@@ -7,6 +7,9 @@
 
 #include "file_information.h"
 #include "file_useful.h"
+#include "includes.h"
+#include "char_useful.h"
+
 
 /* myDTD ########################################################## */
 typedef struct attribute
@@ -30,6 +33,7 @@ typedef struct parameter
     char* category;  // corresponding to a #PCDATA
     element element;  // relative to !ELEMENT
     attribute attribute;  // relative to !ATTLIST
+    char* entity;
 } parameter;
 
 typedef struct markup
@@ -67,5 +71,9 @@ void get_dtd_param_category(char* str, int* pos, markupContainer* markupArray);
 void get_dtd_param_element(char* str, int* pos, markupContainer* markupArray);
 
 void get_dtd_param_attribute(char* str, int* pos, markupContainer* markupArray);
+
+void get_dtd_param_entity(char* str, int* pos, markupContainer* container);
+
+void getNextCharAfterSpace(char* str, int* pos);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H

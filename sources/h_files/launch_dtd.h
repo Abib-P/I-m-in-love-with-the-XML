@@ -7,6 +7,9 @@
 
 #include "file_information.h"
 #include "read_dtd.h"
+#include "validation_dtd.h"
+#include "includes.h"
+#include "char_useful.h"
 
 int launchDtd(char *xmlFileName);
 
