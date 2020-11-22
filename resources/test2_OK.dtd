@@ -1,0 +1,9 @@
+<!DOCTYPE schools [
+        <!ELEMENT schools (school)>
+        <!ELEMENT school (classrooms)>
+        <!ELEMENT classrooms (classroom+)>
+        <!ELEMENT classroom (#PCDATA)>
+
+        <!ATTLIST classroom students CDATA #REQUIRED>
+        <!ATTLIST school name CDATA #FIXED "esgi">
+        ]>

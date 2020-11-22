@@ -5,8 +5,10 @@
 #define EXIT_FAILURE 1
 //todo free actual malloc when returning an error (to not lose the opportunity)
 //todo pop error when reach end of file in a comment
-//todo validate the xml from the
 //todo railway programing doc
+//todo gérer le tab "fixed"
+//todo faire un executable
+
 
 int main(int argc, char **argv) {
 #ifdef __unix__

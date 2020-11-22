@@ -20,7 +20,6 @@ XML_tree * launchXml(char *xmlFileName){
         }
         else{
             if(xmlFile != NULL) {
-                //freeXml_tree(xmlFile); todo implement free this free when we need it
                 freeFileInformation(xmlFileInfo);
             }
         }

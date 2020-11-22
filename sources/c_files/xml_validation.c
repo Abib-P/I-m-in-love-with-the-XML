@@ -107,6 +107,32 @@ int xmlMarkupValidation(XML_basic *xmlMarkup, markupContainer *dtdMarkupArray) {
                         attributeExist = 1;
                         if (strcmp(dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_type, "CDATA") == 0){
                             markupAttribute[indexMarkup] += 1;
+                            if(strncmp(dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value, "#FIXED",6) == 0){
+                                int firstChar = 0;
+                                while(dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar] != '\"' && dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar] != 0){
+                                    firstChar++;
+                                }
+                                if (dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar] == 0){
+                                    return 0;
+                                }
+                                firstChar++;
+                                if (dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar] == 0 || dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar] == '\"'){
+                                    return 0;
+                                }
+                                int lastChar = firstChar+1;
+                                while(dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] != '\"' && dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] != 0){
+                                    lastChar++;
+                                }
+                                if(dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] == 0){
+                                    return 0;
+                                }
+                                dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] = 0;
+                                if(strcmp(&dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[firstChar],xmlMarkup->attributeList[i]->attributeValue) != 0){
+                                    dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] = '\"';
+                                    return 0;
+                                }
+                                dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_value[lastChar] = '\"';
+                            }
                         }
                         else { //if attribute type == "(ent1|ent2|...|...|entN)"
                             markupAttribute[indexMarkup] += 1;
@@ -139,7 +165,6 @@ int xmlMarkupValidation(XML_basic *xmlMarkup, markupContainer *dtdMarkupArray) {
                                             &dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_type[firstChar],
                                             xmlMarkup->attributeList[i]->attributeValue) == 0) {
                                         dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_type[actualChar] = ')';
-                                        attributeValueExist = 1;
                                     } else {
                                         dtdMarkupArray->markupArray[j].markup_parameters.attribute.attribute_type[actualChar] = ')';
                                         return 0;
@@ -149,8 +174,6 @@ int xmlMarkupValidation(XML_basic *xmlMarkup, markupContainer *dtdMarkupArray) {
                                     return 0;
                                 }
                             }
-                            if (attributeValueExist == 0)
-                                return 0;
                         }
                         break;
                     }
