@@ -36,6 +36,7 @@ void startTest(){
                     printf("pas d'erreur, comme prévu\n");
                 }
             }
+            freeXml_tree(testXmlTree);
         }
         printf("\n###############################################\n");
     }
@@ -80,6 +81,7 @@ void startTestWithTerminal(){
                     printf("\n");
                 }
             }
+            freeXml_tree(testXmlTree);
         }
         printf("\n###############################################\n");
     }
