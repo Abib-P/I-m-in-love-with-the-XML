@@ -2,26 +2,10 @@
 <schools>
     <school name="esgi">
         <classrooms>
-            <classroom students="30"><!--les meilleurs-->AL</classroom>
+            <classroom students="30">AL</classroom>
             <classroom students="40">IBD</classroom>
             <classroom students="25">MOC</classroom>
             <classroom students="20">IBC</classroom>
-        </classrooms>
-    </school>
-    <school name="ppa">
-        <classrooms>
-            <classroom students="17">Marketing</classroom>
-            <classroom students="23">Communication</classroom>
-            <classroom students="38">Supply Chain</classroom>
-            <classroom students="29">International Business</classroom>
-        </classrooms>
-    </school>
-    <school name="ican">
-        <classrooms>
-            <classroom students="4">Game Design</classroom>
-            <classroom students="17">Design 3d Et Animation</classroom>
-            <classroom students="23">Web Et Digital</classroom>
-            <classroom students="21">User Experience Design</classroom>
         </classrooms>
     </school>
 </schools>

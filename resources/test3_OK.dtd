@@ -1,23 +1,9 @@
-<!DOCTYPE classrooms[
-        <!ELEMENT classrooms (classroom+, _classroom)>
+<!DOCTYPE schools [
+        <!ELEMENT schools (school+)>
+        <!ELEMENT school (classrooms)>
+        <!ELEMENT classrooms (classroom+)>
         <!ELEMENT classroom (#PCDATA)>
-        <!ELEMENT _classroom (#PCDATA)>
-        <!ATTLIST element-name
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name (en1|en2|..) default-value
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name (en1|en2|..) default-value
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue>
-        <!ELEMENT _classroom (#PCDATA)>
-        <!ENTITY writer "Donald Duck.">
-        <!ATTLIST elementFixed
-                attributeFixed FixedType #FIXED "value"
-                attribute-name attribute-type #REQUIRED
-                attributeFixed FixedType #FIXED "value"
-                attributeFixed FixedType #FIXED "value">
+
+        <!ATTLIST school name (ppa|esgi|ican) "esgi">
+        <!ATTLIST classroom students CDATA #IMPLIED>
         ]>

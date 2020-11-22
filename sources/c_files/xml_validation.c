@@ -95,10 +95,9 @@ int xmlMarkupValidation(XML_basic *xmlMarkup, markupContainer *dtdMarkupArray) {
     for (int i = 0; i < nbAttList; i++) {
         markupAttribute[i] = 0;
     }
-    int attributeExist;
     for(int i = 0 ; i < xmlMarkup->attributeSize ; i++)
     {
-        attributeExist = 0;
+        int attributeExist = 0;
         int indexMarkup = 0;
         for(int j = 0 ; j < dtdMarkupArray->size; j++)
         {

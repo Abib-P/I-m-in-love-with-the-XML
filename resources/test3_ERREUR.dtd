@@ -1,29 +1,8 @@
-<!DOCTYPE classrooms[
-        <!ELEMENT classrooms (classroom+, _classroom)>
+<!DOCTYPE schools [
+        <!ELEMENT schools (school+)>
+        <!ELEMENT school (classrooms)>
+        <!ELEMENT classrooms (classroom)>
         <!ELEMENT classroom (#PCDATA)>
-        <!ELEMENT _classroom (#PCDATA)>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-]>
+
+        <!ATTLIST classroom students CDATA #IMPLIED>
+        ]>

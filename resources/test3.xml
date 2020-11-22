@@ -1,11 +1,27 @@
-<?TeamAlpha member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
-<!--comment 1-->
-<?TeamAlpha2 member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
-<!-- comment 2-->
-<classrooms name="Sananes-san" d="D" odd="jj la girap">
-	<classroom1    >  AL (is t<!--commqbscdhgqsvhdvqshjvdhjqsvhjdsqhjdbhjqsjdbqsjhdbqshjbdhjqsbent wesh-->he best)     </classroom1               >
-    <classroom2 mlg="flantier">IABD	</classroom2>
-    <classroom3>        MOC</classroom3>
-    <classroom4>IBC</classroom4>
-    <esgi><to>plein de belle chose<truc mm="10"/></to></esgi>
-</classrooms>
+<?xml version="1.0"?>
+<schools>
+    <school name="esgi">
+        <classrooms>
+            <classroom students="30"><!--les meilleurs-->AL</classroom>
+            <classroom students="40">IBD</classroom>
+            <classroom students="25">MOC</classroom>
+            <classroom students="20">IBC</classroom>
+        </classrooms>
+    </school>
+    <school name="ppa">
+        <classrooms>
+            <classroom students="17">Marketing</classroom>
+            <classroom students="23">Communication</classroom>
+            <classroom students="38">Supply Chain</classroom>
+            <classroom students="29">International Business</classroom>
+        </classrooms>
+    </school>
+    <school name="ican">
+        <classrooms>
+            <classroom students="4">Game Design</classroom>
+            <classroom students="17">Design 3d Et Animation</classroom>
+            <classroom students="23">Web Et Digital</classroom>
+            <classroom students="21">User Experience Design</classroom>
+        </classrooms>
+    </school>
+</schools>
