@@ -129,8 +129,11 @@ void retrieve_dtd_info(char* str, markupContainer* container) {
                     find_typeOf_param(str, &i, container);
                 }
             }  // markup_type == !ATTLIST
-            else {
-                    get_dtd_param_attribute(str, &i, container);
+            else if (strcmp(container->markupArray[container->size].markup_type, "!ATTLIST") == 0) {
+                get_dtd_param_attribute(str, &i, container);
+            }
+            else if (strcmp(container->markupArray[container->size].markup_type, "!ENTITY") == 0) {
+                get_dtd_param_entity(str, &i, container);
             }
             break;
         }
@@ -177,6 +180,7 @@ void get_dtd_name(char* str, int* pos, markupContainer* container) {
                 container->markupArray[container->size].markup_name[j] = str[*pos];
             }
         }
+        removeFinalSpacesOfString(container->markupArray[container->size].markup_name);
     }
     else {  // markup_type == !ATTLIST
         // read until ' ' + RETRIEVE markup_name
@@ -275,9 +279,12 @@ void get_dtd_param_element(char* str, int* pos, markupContainer* container) {
  * @param container
  */
 void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
+    // évite la casse s'il y a un espace perdu à la fin
+    removeFinalSpacesOfString(str);
+
     // init, malloc
-    container->markupArray[container->size].markup_parameters.attribute.attribute_name = malloc(sizeof(char) * 20);
-    container->markupArray[container->size].markup_parameters.attribute.attribute_type = malloc(sizeof(char) * 20);
+    container->markupArray[container->size].markup_parameters.attribute.attribute_name = malloc(sizeof(char) * 40);
+    container->markupArray[container->size].markup_parameters.attribute.attribute_type = malloc(sizeof(char) * 40);
     container->markupArray[container->size].markup_parameters.attribute.attribute_value = malloc(sizeof(char) * 40);
     // SET parameter_type at "attribute"
     container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 20);
@@ -292,35 +299,49 @@ void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
             container->markupArray[container->size].markup_parameters.attribute.attribute_name[i+1] ='\0';
         }
     }
-
     getNextCharAfterSpace(str, pos);
 
-    // RETRIEVE attribute_type
+    // RETRIEVE attribute_name
     for (int i = 0; str[*pos] != ' '; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_type[i] = str[*pos];
         if (str[*pos+1] == ' ') {
-            container->markupArray[container->size].markup_parameters.attribute.attribute_type[i+1] ='\0';
+            container->markupArray[container->size].markup_parameters.attribute.attribute_type[i+1] = '\0';
         }
     }
-
     getNextCharAfterSpace(str, pos);
 
     // RETRIEVE attribute_value
     for (int i = 0; str[*pos] != '\0'; i += 1, *pos += 1) {
         container->markupArray[container->size].markup_parameters.attribute.attribute_value[i] = str[*pos];
 
+        int fixedExist = 0;
+
+        // end of current word
         if (str[*pos+1] == '\0' || str[*pos+1] == ' ') {
-            container->markupArray[container->size].markup_parameters.attribute.attribute_value[i+1] ='\0';
+            container->markupArray[container->size].markup_parameters.attribute.attribute_value[i+1] = '\0';
+            removeFinalSpacesOfString(container->markupArray[container->size].markup_parameters.attribute.attribute_value);
+
+            // #FIXED
+            if (strcmp(container->markupArray[container->size].markup_parameters.attribute.attribute_value, "#FIXED") == 0)
+                fixedExist = 1;
         }
 
-        if (str[*pos] == ' ') {
+        // USE CASE MANAGEMENT : #FIXED & multiple attributes
+        if (fixedExist == 1) {
+            container->markupArray[container->size].markup_parameters.attribute.attribute_value[i+1] = str[*pos+1];
+            i += 1;
+            *pos += 1;
+        }
+        else if (str[*pos] == ' ') {
             getNextCharAfterSpace(str, pos);
             if (str[*pos] != '\0') {
+
                 container->size += 1;
-                if (container->size == container->capacity) {
+                if (container->size >= container->capacity) {
                     container->capacity *= 2;
-                    container->markupArray = realloc(container->markupArray,sizeof(struct markup)*container->capacity);
+                    container->markupArray = realloc(container->markupArray, sizeof(markup) * container->capacity);
                 }
+
                 container->markupArray[container->size].markup_type = malloc(sizeof(char) * 20);
                 strcpy(container->markupArray[container->size].markup_type, container->markupArray[container->size-1].markup_type);
                 container->markupArray[container->size].markup_name = malloc(sizeof(char) * 20);
@@ -331,6 +352,22 @@ void get_dtd_param_attribute(char* str, int* pos, markupContainer* container) {
         }
     }
 }
+
+
+void get_dtd_param_entity(char* str, int* pos, markupContainer* container) {
+    // SET parameter_type at "attribute"
+    container->markupArray[container->size].markup_parameters.parameter_type = malloc(sizeof(char) * 20);
+    strcpy(container->markupArray[container->size].markup_parameters.parameter_type, "entity");
+    container->markupArray[container->size].markup_parameters.entity = malloc(sizeof(char) * 40);
+
+    for (int i = 0; str[*pos] != '\0'; i+=1, *pos+=1) {
+        container->markupArray[container->size].markup_parameters.entity[i] = str[*pos];
+        if (str[*pos+1] == '\0') {
+            container->markupArray[container->size].markup_parameters.entity[i+1] ='\0';
+        }
+    }
+}
+
 
 // get the next character
 void getNextCharAfterSpace(char* str, int* pos) {

@@ -5,7 +5,7 @@
 #include "../h_files/test.h"
 
 void startTest(){
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         char dtdOkName[40];
         char dtdErrorName[40];
         char xmlName[40];
@@ -43,7 +43,7 @@ void startTest(){
 }
 
 void startTestWithTerminal(){
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         char dtdOkName[40];
         char dtdErrorName[40];
         char xmlName[40];

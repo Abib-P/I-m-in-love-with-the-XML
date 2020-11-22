@@ -28,13 +28,16 @@ void showDtd(markupContainer* markupArray) {
                     removeFinalSpacesOfString(markupArray->markupArray[i].markup_parameters.element.elements[j]);
                     printf("%s ", markupArray->markupArray[i].markup_parameters.element.elements[j]);
                 }
-            } else {
+            } else if (strcmp(markupArray->markupArray[i].markup_parameters.parameter_type, "attribute") == 0) {
                 removeFinalSpacesOfString(markupArray->markupArray[i].markup_parameters.attribute.attribute_name);
                 printf(" | param : %s, ", markupArray->markupArray[i].markup_parameters.attribute.attribute_name);
                 removeFinalSpacesOfString(markupArray->markupArray[i].markup_parameters.attribute.attribute_type);
                 printf("%s, ", markupArray->markupArray[i].markup_parameters.attribute.attribute_type);
                 removeFinalSpacesOfString(markupArray->markupArray[i].markup_parameters.attribute.attribute_value);
                 printf("%s", markupArray->markupArray[i].markup_parameters.attribute.attribute_value);
+            } else{
+                removeFinalSpacesOfString(markupArray->markupArray[i].markup_parameters.entity);
+                printf(" | param : %s", markupArray->markupArray[i].markup_parameters.entity);
             }
         }
     }

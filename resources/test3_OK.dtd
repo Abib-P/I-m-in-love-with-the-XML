@@ -2,28 +2,22 @@
         <!ELEMENT classrooms (classroom+, _classroom)>
         <!ELEMENT classroom (#PCDATA)>
         <!ELEMENT _classroom (#PCDATA)>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
+        <!ATTLIST element-name
                 attribute-name attribute-type #REQUIRED
+                testName testType testValue
+                attribute-name (en1|en2|..) default-value
                 attribute-name attribute-type #REQUIRED
+                testName testType testValue
+                attribute-name (en1|en2|..) default-value
                 attribute-name attribute-type #REQUIRED
+                testName testType testValue
                 attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
+                testName testType testValue>
+        <!ELEMENT _classroom (#PCDATA)>
+        <!ENTITY writer "Donald Duck.">
+        <!ATTLIST elementFixed
+                attributeFixed FixedType #FIXED "value"
                 attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-]>
+                attributeFixed FixedType #FIXED "value"
+                attributeFixed FixedType #FIXED "value">
+        ]>

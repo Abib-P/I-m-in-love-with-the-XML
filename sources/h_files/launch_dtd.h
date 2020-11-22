@@ -5,6 +5,7 @@
 #ifndef I_M_IN_LOVE_WITH_THE_XML_LAUNCH_DTD_H
 #define I_M_IN_LOVE_WITH_THE_XML_LAUNCH_DTD_H
 
+#include "includes.h"
 #include "file_information.h"
 #include "read_dtd.h"
 #include "char_useful.h"
