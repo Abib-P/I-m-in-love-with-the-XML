@@ -1,11 +1,8 @@
-<?TeamAlpha member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
-<!--comment 1-->
-<?TeamAlpha2 member="Jesper" date="2008-04-15" comment="I strongly feel that the attributes in the product element below are really not needed and should be dropped." ?>
-<!-- comment 2-->
-<classrooms    name="Sananes-san" d="D" odd="jj la girap">
-	<classroom1    >  AL (is t<!--commqbscdhgqsvhdvqshjvdhjqsvhjdsqhjdbhjqsjdbqsjhdbqshjbdhjqsbent wesh-->he best)     </classroom1               >
-    <classroom2 mlg="flantier">IABD	</classroom2>
-    <classroom3>        MOC</    classroom3>
-    <classroom4>IBC</classroom4>
-    <esgi><to>plein de belle chose<truc mm="10"/></to></esgi>
+<?xml version="1.0"?>
+<classrooms>
+    <classroom id="1" room="A1" teacher="Gabriel" students="30" girls="2" boys="28" hours="2.5">AL</classroom>
+    <classroom id="2" room="A2" teacher="Léo" students="12" girls="0" hours="2">IABD</classroom>
+    <classroom id="3" room="A1" teacher="Arthur" students="15" boys="12" hours="2">MOC</classroom>
+    <classroom id="4" room="A3" teacher="Hugo" students="47" girls="7" boys="40" hours="1">IBC</classroom>
+    <_classroom>IBC</_classroom>
 </classrooms>

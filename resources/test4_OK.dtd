@@ -2,22 +2,12 @@
         <!ELEMENT classrooms (classroom+, _classroom)>
         <!ELEMENT classroom (#PCDATA)>
         <!ELEMENT _classroom (#PCDATA)>
-        <!ATTLIST element-name
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name (en1|en2|..) default-value
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name (en1|en2|..) default-value
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue
-                attribute-name attribute-type #REQUIRED
-                testName testType testValue>
-        <!ELEMENT _classroom (#PCDATA)>
-        <!ENTITY writer "Donald Duck.">
-        <!ATTLIST elementFixed
-                attributeFixed FixedType #FIXED "value"
-                attribute-name attribute-type #REQUIRED
-                attributeFixed FixedType #FIXED "value"
-                attributeFixed FixedType #FIXED "value">
+        <!ATTLIST classroom
+                id CDATA #REQUIRED
+                room (A1|A2|A3|A4) "A1"
+                teacher CDATA #REQUIRED
+                students CDATA #REQUIRED
+                girls CDATA #IMPLIED
+                boys CDATA #IMPLIED
+                hours (1|2|2.5|3|4) "1">
         ]>

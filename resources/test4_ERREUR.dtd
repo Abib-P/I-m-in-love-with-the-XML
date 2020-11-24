@@ -2,28 +2,12 @@
         <!ELEMENT classrooms (classroom+, _classroom)>
         <!ELEMENT classroom (#PCDATA)>
         <!ELEMENT _classroom (#PCDATA)>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-        <!ATTLIST element-name attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED
-                attribute-name attribute-type #REQUIRED>
-]>
+        <!ATTLIST classroom
+                id CDATA #REQUIRED
+                room (A1|A2|A3|A4) "A1"
+                teacher CDATA #REQUIRED
+                students CDATA #REQUIRED
+                girls CDATA #REQUIRED
+                boys CDATA #IMPLIED
+                hours (1|2|3|4) "1">
+        ]>

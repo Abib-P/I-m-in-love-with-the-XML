@@ -6,7 +6,13 @@
 
 markupContainer* launchDtd(char *dtdFileName) {
     File_information* dtdFileInfo = initialiseFileInformation(dtdFileName);
-    markupContainer* markupArray = find_dtd_content(dtdFileInfo);
+    markupContainer *markupArray;
+    if(dtdFileInfo != NULL)
+    {
+        markupArray = find_dtd_content(dtdFileInfo);
+    } else {
+        return NULL;
+    }
     return markupArray;
 }
 

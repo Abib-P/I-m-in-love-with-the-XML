@@ -191,8 +191,11 @@ int xmlMarkupValidation(XML_basic *xmlMarkup, markupContainer *dtdMarkupArray) {
     //verif pour require attribute
     int indexMarkupAttribute = 0;
     for (int i = 0; i < dtdMarkupArray->size ; i++) {
+        removeFinalSpacesOfString(dtdMarkupArray->markupArray[i].markup_type);
         if (strcmp(dtdMarkupArray->markupArray[i].markup_type, "!ATTLIST") == 0) {
+            removeFinalSpacesOfString(dtdMarkupArray->markupArray[i].markup_name);
             if (strcmp(dtdMarkupArray->markupArray[i].markup_name, xmlMarkup->elementName) == 0) {
+                removeFinalSpacesOfString(dtdMarkupArray->markupArray[i].markup_parameters.attribute.attribute_value);
                 if (strcmp(dtdMarkupArray->markupArray[i].markup_parameters.attribute.attribute_value, "#REQUIRED") == 0){
                     if (markupAttribute[indexMarkupAttribute] == 0){
                         return 0;
