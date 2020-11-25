@@ -6,12 +6,12 @@
 
 char *getElementName(File_information *fileInfo) {
     int bufferSize = 0;
-    char buffer[1000]; //TODO taille arbitraire
+    char buffer[1000];
     char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n' || actualCharRead == EOF || actualCharRead == '=')
     {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -30,8 +30,8 @@ char *getElementName(File_information *fileInfo) {
     }
     buffer[bufferSize] = 0;
     if(actualCharRead == '<' || actualCharRead == EOF || actualCharRead == '='){
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -97,12 +97,12 @@ void removeFinalSpacesOfString(char *string) {
 
 char* getAttributeName(File_information *fileInfo) {
     int bufferSize = 0;
-    char buffer[1000]; //TODO taille arbitraire
+    char buffer[1000];
     char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead == '>' || actualCharRead == '<' || actualCharRead == ' ' || actualCharRead == '/' || actualCharRead == '\n' || actualCharRead == EOF || actualCharRead == '=')
     {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -121,8 +121,8 @@ char* getAttributeName(File_information *fileInfo) {
     }
     buffer[bufferSize] = 0;
     if(actualCharRead != '='){
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -137,12 +137,12 @@ char* getAttributeName(File_information *fileInfo) {
 
 char *getAttributeValue(File_information *fileInfo) {
     int bufferSize = 0;
-    char buffer[1000]; //TODO taille arbitraire
+    char buffer[1000];
     char actualCharRead = getNextCharacterInFile(fileInfo);
     if(actualCharRead != '\"')
     {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -159,8 +159,8 @@ char *getAttributeValue(File_information *fileInfo) {
     }
     buffer[bufferSize] = 0;
     if(actualCharRead != '\"'){
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);

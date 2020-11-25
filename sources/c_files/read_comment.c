@@ -28,7 +28,6 @@ void readComment(File_information *fileInfo, struct XML_tree* xmlTree) {
         addCharacterToCommentOutside(xmlTree,actualCharRead);
         actualCharRead = getNextCharacterInFile(fileInfo);
     }
-    //todo create error and catch
 }
 
 void readCommentInsideXml(File_information* fileInfo,struct XML_basic *xmlParent){
@@ -55,5 +54,4 @@ void readCommentInsideXml(File_information* fileInfo,struct XML_basic *xmlParent
         addCharacterToCommentInside(xmlParent,actualCharRead);
         actualCharRead = getNextCharacterInFile(fileInfo);
     }
-    //todo create error and catch
 }

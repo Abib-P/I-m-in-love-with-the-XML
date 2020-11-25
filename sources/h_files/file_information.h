@@ -14,7 +14,7 @@ typedef struct File_information{
     int actualLine;
     int actualColumn;
     int nbColumnOnLastLine;
-    ERROR* error;
+    struct ERROR* error;
 } File_information;
 
 File_information* initialiseFileInformation(char* fileName);

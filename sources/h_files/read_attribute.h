@@ -16,10 +16,10 @@ typedef struct Attribute{
     char* attributeValue;
 } Attribute;
 
-void addAttributeToXmlMarkup(File_information * fileInfo,struct XML_basic*  xmlMarkup);
+void addAttributeToXmlMarkup(struct File_information * fileInfo,struct XML_basic*  xmlMarkup);
 
-void addAttributeToXmlInstruction(File_information *fileInfo,struct XML_instruction *xmlParent);
+void addAttributeToXmlInstruction(struct File_information *fileInfo,struct XML_instruction *xmlParent);
 
-void freeAttribute(Attribute* attribute);
+void freeAttribute(struct Attribute* attribute);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_ATTRIBUTE_H

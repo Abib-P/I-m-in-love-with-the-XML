@@ -8,8 +8,8 @@ XML_tree * readXml(File_information* fileInfo) {
     char actualCharRead = getFirstCharacterAfterSpace(fileInfo);
     if(actualCharRead != '<')
     {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInfo);
         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -43,8 +43,8 @@ XML_tree * readXml(File_information* fileInfo) {
                 }
                 else
                 {
-                    char buffer_where[1000]; //TODO taille arbitraire
-                    char buffer_error_value[1000]; //TODO taille arbitraire
+                    char buffer_where[1000];
+                    char buffer_error_value[1000];
 
                     rewindOnce(fileInfo);
                     sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -55,8 +55,8 @@ XML_tree * readXml(File_information* fileInfo) {
             }
             else
             {
-                char buffer_where[1000]; //TODO taille arbitraire
-                char buffer_error_value[1000]; //TODO taille arbitraire
+                char buffer_where[1000];
+                char buffer_error_value[1000];
 
                 rewindOnce(fileInfo);
                 sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -68,8 +68,8 @@ XML_tree * readXml(File_information* fileInfo) {
         actualCharRead = getFirstCharacterAfterSpace(fileInfo);
         if(actualCharRead != '<')
         {
-            char buffer_where[1000]; //TODO taille arbitraire
-            char buffer_error_value[1000]; //TODO taille arbitraire
+            char buffer_where[1000];
+            char buffer_error_value[1000];
 
             rewindOnce(fileInfo);
             sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -146,8 +146,8 @@ void readInstruction(File_information *fileInformation, XML_tree *xmlTree) {
     actualCharacterRead = getNextCharacterInFile(fileInformation);
     if(actualCharacterRead != '>')
     {
-        char buffer_where[1000]; //TODO taille arbitraire
-        char buffer_error_value[1000]; //TODO taille arbitraire
+        char buffer_where[1000];
+        char buffer_error_value[1000];
 
         rewindOnce(fileInformation);
         sprintf(buffer_where, "%s at %d:%d", fileInformation->fileName, fileInformation->actualLine, fileInformation->actualColumn);

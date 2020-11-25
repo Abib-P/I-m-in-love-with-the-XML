@@ -25,11 +25,11 @@ typedef struct XML_tree{
     struct XML_basic* rootMarkup;
 } XML_tree;
 
-XML_tree* readXml(File_information* fileInformation);
+XML_tree* readXml(struct File_information* fileInformation);
 
 XML_tree* createXmlTree();
 
-void readInstruction(File_information* fileInformation, XML_tree* xmlTree);
+void readInstruction(struct File_information* fileInformation, XML_tree* xmlTree);
 
 void freeXml_tree(XML_tree *xmlTree);
 

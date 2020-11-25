@@ -11,16 +11,7 @@
 
 typedef struct XML_basic{
     char* elementName ;
-    char* value; //todo refactor to value** to have a char* for each time you encounter a markup
-    /*for :
-     * <balise>blabla1
-     *      <balise1></balise1>blabla2
-     * </balise>
-     *
-     * elementName = "balise";
-     * value[0] = "blabla1";
-     * value[1] = "blabla2";
-     */
+    char* value;
     int valueSize;
     int valueCapacity;
     struct XML_basic** markupList;
@@ -34,11 +25,11 @@ typedef struct XML_basic{
     int commentCapacity;
 } XML_basic;
 
-void readInsideXml(File_information* fileInfo, XML_basic* xmlParent);
+void readInsideXml(struct File_information* fileInfo, XML_basic* xmlParent);
 
-XML_basic* createRootXmlBasic(File_information* fileInformation);
+XML_basic* createRootXmlBasic(struct File_information* fileInformation);
 
-XML_basic* createXmlBasic(File_information* fileInformation, XML_basic* xmlParent);
+XML_basic* createXmlBasic(struct File_information* fileInformation, XML_basic* xmlParent);
 
 void addNewXmlMarkupToParent(XML_basic* xmlParent, XML_basic* xmlChild);
 

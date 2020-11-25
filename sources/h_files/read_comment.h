@@ -8,8 +8,8 @@
 #include "file_information.h"
 #include "xmlfile_read.h"
 
-void readComment(File_information* fileInformation,struct XML_tree *xmlTree);
+void readComment(struct File_information* fileInformation,struct XML_tree *xmlTree);
 
-void readCommentInsideXml(File_information* fileInformation,struct XML_basic *xmlTree);
+void readCommentInsideXml(struct File_information* fileInformation,struct XML_basic *xmlTree);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_READ_COMMENT_H

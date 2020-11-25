@@ -51,11 +51,11 @@ typedef struct markupContainer {
 
 /* PROTOTYPES ########################################################## */
 
-markupContainer* find_dtd_content(File_information*);
+markupContainer* find_dtd_content(struct File_information*);
 
-void find_dtd_markups(File_information*, markupContainer*);
+void find_dtd_markups(struct File_information*, markupContainer*);
 
-void find_dtd_markup(File_information*, markupContainer*);
+void find_dtd_markup(struct File_information*, markupContainer*);
 
 void retrieve_dtd_info(char*, markupContainer*);
 

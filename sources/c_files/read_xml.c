@@ -20,8 +20,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                             actualCharRead = getNextCharacterInFile(fileInfo);
                         }
                         else{
-                            char buffer_where[1000]; //TODO taille arbitraire
-                            char buffer_error_value[1000]; //TODO taille arbitraire
+                            char buffer_where[1000];
+                            char buffer_error_value[1000];
 
                             rewindOnce(fileInfo);
                             sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -31,8 +31,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                         }
                     }
                     else{
-                        char buffer_where[1000]; //TODO taille arbitraire
-                        char buffer_error_value[1000]; //TODO taille arbitraire
+                        char buffer_where[1000];
+                        char buffer_error_value[1000];
 
                         rewindOnce(fileInfo);
                         sprintf(buffer_where,"%s at %d:%d",fileInfo->fileName ,fileInfo->actualLine, fileInfo->actualColumn);
@@ -53,8 +53,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
             }
         }
         if (actualCharRead == '>' || actualCharRead == EOF) {
-            char buffer_where[1000]; //TODO taille arbitraire
-            char buffer_error_value[1000]; //TODO taille arbitraire
+            char buffer_where[1000];
+            char buffer_error_value[1000];
 
             rewindOnce(fileInfo);
             sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
@@ -80,8 +80,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                                 return;
                             }
                             else{
-                                char buffer_where[1000]; //TODO taille arbitraire
-                                char buffer_error_value[1000]; //TODO taille arbitraire
+                                char buffer_where[1000];
+                                char buffer_error_value[1000];
 
                                 sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
                                 sprintf(buffer_error_value, "the markup must be closed by a \'>\' character");
@@ -91,8 +91,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                         }
                         else
                         {
-                            char buffer_where[1000]; //TODO taille arbitraire
-                            char buffer_error_value[1000]; //TODO taille arbitraire
+                            char buffer_where[1000];
+                            char buffer_error_value[1000];
 
 
                             sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);
@@ -118,8 +118,8 @@ void readInsideXml(File_information* fileInfo, XML_basic* xmlParent) {
                                 actualCharRead = getFirstCharacterAfterSpace(fileInfo);
                             }
                             else{
-                                char buffer_where[1000]; //TODO taille arbitraire
-                                char buffer_error_value[1000]; //TODO taille arbitraire
+                                char buffer_where[1000];
+                                char buffer_error_value[1000];
 
                                 rewindOnce(fileInfo);
                                 sprintf(buffer_where, "%s at %d:%d", fileInfo->fileName, fileInfo->actualLine, fileInfo->actualColumn);

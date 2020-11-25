@@ -4,10 +4,6 @@
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
-//todo free actual malloc when returning an error (to not lose the opportunity)
-//todo pop error when reach end of file in a comment
-//todo railway programing doc
-
 
 int main(int argc, char **argv) {
 #ifdef __unix__
@@ -15,6 +11,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc == 2)
     {
+        application.exist = 0;
         if (strcmp(argv[1],"test") == 0){
             startTest();
         }
@@ -24,6 +21,7 @@ int main(int argc, char **argv) {
     }
     else if (argc == 3)
     {
+        application.exist = 0;
         if (launchVerification(argv[1],argv[2])){
             printf("XML Valid\n");
         }
@@ -32,6 +30,7 @@ int main(int argc, char **argv) {
         }
     }
     else{
+        application.exist = 1;
         startWindow(argc,argv);
     }
     return EXIT_SUCCESS;

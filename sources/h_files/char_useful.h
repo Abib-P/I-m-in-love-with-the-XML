@@ -10,11 +10,11 @@
 #include "read_xml.h"
 #include "file_useful.h"
 
-char * getElementName(File_information *fileInfo);
+char * getElementName(struct File_information *fileInfo);
 
-char * getAttributeName(File_information *fileInfo);
+char * getAttributeName(struct File_information *fileInfo);
 
-char * getAttributeValue(File_information *fileInfo);
+char * getAttributeValue(struct File_information *fileInfo);
 
 void addCharacterToStringValue(struct XML_basic* ActualXmlMarkup, char characterToPut);
 

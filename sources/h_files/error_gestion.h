@@ -6,6 +6,7 @@
 #define I_M_IN_LOVE_WITH_THE_XML_ERROR_GESTION_H
 
 #include "includes.h"
+#include "gtk_functions.h"
 
 typedef struct ERROR{
     char* where;

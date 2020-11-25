@@ -4,10 +4,10 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Name</property>
+    <property name="title" translatable="yes">XML Validator</property>
     <property name="resizable">False</property>
     <property name="default_width">1000</property>
-    <property name="default_height">750</property>
+    <property name="default_height">650</property>
     <child>
       <placeholder/>
     </child>
@@ -17,12 +17,12 @@
         <property name="can_focus">False</property>
         <child>
           <object class="GtkMenuBar">
-            <property name="width_request">162</property>
+            <property name="width_request">80</property>
             <property name="height_request">35</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkMenuItem">
+              <object class="GtkMenuItem" id="file">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_File</property>
@@ -32,34 +32,33 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-new</property>
+                      <object class="GtkImageMenuItem" id="openDTD">
+                        <property name="label" translatable="yes">Open DTD</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_openDTD_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-open</property>
+                      <object class="GtkImageMenuItem" id="openXML">
+                        <property name="label" translatable="yes">Open XML</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_openXML_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-save</property>
+                      <object class="GtkImageMenuItem" id="newXML">
+                        <property name="label" translatable="yes">New XML</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_stock">False</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem">
+                      <object class="GtkImageMenuItem" id="saveAs">
                         <property name="label">gtk-save-as</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -67,21 +66,6 @@
                         <property name="use_stock">True</property>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-quit</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
                   </object>
                 </child>
               </object>
@@ -90,77 +74,28 @@
               <object class="GtkMenuItem">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Edit</property>
+                <property name="label" translatable="yes">_Start</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-cut</property>
+                      <object class="GtkImageMenuItem" id="verifXML">
+                        <property name="label" translatable="yes">Verif XML</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_VerifXML_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-copy</property>
+                      <object class="GtkImageMenuItem" id="verifXMLwithDTD">
+                        <property name="label" translatable="yes">Verif XML with DTD</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-paste</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-delete</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_View</property>
-                <property name="use_underline">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Help</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-about</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_verifXMLwithDTD_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -170,30 +105,69 @@
           </object>
         </child>
         <child>
-          <object class="GtkEntry">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+          <object class="GtkTextView" id="message">
+            <property name="width_request">984</property>
+            <property name="height_request">40</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
+            <property name="editable">False</property>
           </object>
           <packing>
-            <property name="x">779</property>
-            <property name="y">79</property>
+            <property name="x">7</property>
+            <property name="y">600</property>
           </packing>
         </child>
         <child>
-          <object class="GtkEntry">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+          <object class="GtkScrolledWindow">
+            <property name="width_request">984</property>
+            <property name="height_request">550</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTextView">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="x">605</property>
-            <property name="y">303</property>
+            <property name="x">7</property>
+            <property name="y">42</property>
           </packing>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-dialog-error</property>
+  </object>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-open</property>
+  </object>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-file</property>
+  </object>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
   </object>
 </interface>

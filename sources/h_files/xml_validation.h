@@ -8,8 +8,8 @@
 #include "xmlfile_read.h"
 #include "read_dtd.h"
 
-int xmlValidation(XML_tree* xmlTree, markupContainer* markupArray);
+int xmlValidation(struct XML_tree* xmlTree,struct markupContainer* markupArray);
 
-int xmlMarkupValidation(XML_basic * xmlMarkup, markupContainer* dtdMarkupArray);
+int xmlMarkupValidation(struct XML_basic * xmlMarkup,struct markupContainer* dtdMarkupArray);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_XML_VALIDATION_H

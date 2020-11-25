@@ -10,8 +10,8 @@
 #include "read_dtd.h"
 #include "char_useful.h"
 
-markupContainer* launchDtd(char *xmlFileName);
+struct markupContainer* launchDtd(char *xmlFileName);
 
-void showDtd(markupContainer* markupArray);
+void showDtd(struct markupContainer* markupArray);
 
 #endif //I_M_IN_LOVE_WITH_THE_XML_LAUNCH_DTD_H
