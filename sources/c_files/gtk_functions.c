@@ -1,6 +1,3 @@
-//
-// Created by paula on 13/11/2020.
-//
 
 #include "../h_files/gtk_functions.h"
 

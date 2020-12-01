@@ -1,6 +1,3 @@
-//
-// Created by hmeng on 04/11/2020.
-//
 
 #ifndef I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H
 #define I_M_IN_LOVE_WITH_THE_XML_READ_DTD_H

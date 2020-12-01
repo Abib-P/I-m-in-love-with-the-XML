@@ -1,6 +1,3 @@
-//
-// Created by paula on 15/11/2020.
-//
 
 #include "../h_files/launch_dtd.h"
 

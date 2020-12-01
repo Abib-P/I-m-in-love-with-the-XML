@@ -1,6 +1,3 @@
-//
-// Created by paula on 03/11/2020.
-//
 
 #include "../h_files/char_useful.h"
 

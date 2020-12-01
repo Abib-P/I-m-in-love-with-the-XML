@@ -1,6 +1,3 @@
-//
-// Created by paula on 19/11/2020.
-//
 
 #include "../h_files/xml_validation.h"
 

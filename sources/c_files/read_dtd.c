@@ -1,6 +1,3 @@
-//
-// Created by hmeng on 04/11/2020.
-//
 
 #include "../h_files/read_dtd.h"
 

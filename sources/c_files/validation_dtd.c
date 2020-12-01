@@ -1,6 +1,3 @@
-//
-// Created by CHINOISERIZ on 18/11/2020.
-//
 
 #include "../h_files/validation_dtd.h"
 #include "../h_files/includes.h"

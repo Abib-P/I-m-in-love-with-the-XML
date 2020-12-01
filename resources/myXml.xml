@@ -4,8 +4,12 @@
 <!-- comment 2-->
 <classrooms name="Sananes-san" d="D" odd="jj la girap">
 	<classroom1    >  AL (is t<!--commqbscdhgqsvhdvqshjvdhjqsvhjdsqhjdbhjqsjdbqsjhdbqshjbdhjqsbent wesh-->he best)     </classroom1               >
-    <classroom2 mlg="flantier">IABD	</classroom2>
+    <classroom2 mlg="flantier">IABD</classsroom2>
     <classroom3>        MOC</classroom3>
     <classroom4>IBC</classroom4>
-    <esgi><to>plein de belle chose<truc mm="10"/></to></esgi>
+    <esgi>
+        <to>plein de belle chose
+            <truc mm="10"/>
+        </to>
+    </esgouill>
 </classrooms>

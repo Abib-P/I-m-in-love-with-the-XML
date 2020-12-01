@@ -1,6 +1,3 @@
-//
-// Created by paula on 21/11/2020.
-//
 
 #ifndef I_M_IN_LOVE_WITH_THE_XML_TEST_H
 #define I_M_IN_LOVE_WITH_THE_XML_TEST_H

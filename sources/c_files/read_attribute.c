@@ -1,6 +1,3 @@
-//
-// Created by paula on 08/11/2020.
-//
 
 #include "../h_files/read_attribute.h"
 

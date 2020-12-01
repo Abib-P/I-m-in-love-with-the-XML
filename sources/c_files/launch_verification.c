@@ -1,6 +1,3 @@
-//
-// Created by paula on 23/11/2020.
-//
 
 #include "../h_files/launch_verification.h"
 

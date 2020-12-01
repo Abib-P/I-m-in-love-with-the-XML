@@ -1,6 +1,3 @@
-//
-// Created by paula on 23/11/2020.
-//
 
 #ifndef I_M_IN_LOVE_WITH_THE_XML_LAUNCH_VERIFICATION_H
 #define I_M_IN_LOVE_WITH_THE_XML_LAUNCH_VERIFICATION_H

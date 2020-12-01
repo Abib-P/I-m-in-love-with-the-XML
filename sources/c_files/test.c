@@ -1,6 +1,3 @@
-//
-// Created by paula on 21/11/2020.
-//
 
 #include "../h_files/test.h"
 

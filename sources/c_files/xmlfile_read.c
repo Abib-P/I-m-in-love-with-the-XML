@@ -1,6 +1,3 @@
-//
-// Created by paula on 14/11/2020.
-//
 
 #include "../h_files/xmlfile_read.h"
 

@@ -1,6 +1,3 @@
-//
-// Created by paula on 13/11/2020.
-//
 
 #ifndef I_M_IN_LOVE_WITH_THE_XML_GTK_FUNCTIONS_H
 #define I_M_IN_LOVE_WITH_THE_XML_GTK_FUNCTIONS_H
@@ -13,7 +10,7 @@ typedef struct App{
     int exist;
 
     GtkWidget *mainWindow;
-    GtkBuilder *builder ;
+    GtkBuilder *builder;
     GtkWidget *openDTD;
     GtkWidget *openXML;
     GtkWidget *verifXML;
